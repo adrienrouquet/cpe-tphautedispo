@@ -4,7 +4,7 @@ import java.io.IOException;
 import javax.servlet.http.*;
 
 @SuppressWarnings("serial")
-public class Cpe_tphautedispoServlet extends HttpServlet {
+public class CoreServlet extends HttpServlet {
 	public void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws IOException {
 		resp.setContentType("text/plain");
