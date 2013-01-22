@@ -20,6 +20,18 @@ public class User {
 	{
 	}
 	
+	public User(Entity entity)
+	{
+		_firstName 		= (String) entity.getProperty("firstName");
+		_lastName 		= (String) entity.getProperty("lastName");
+		_yearOfBirth 	= (Integer) entity.getProperty("yearOfBirth");
+		_email 				= (String) entity.getProperty("email");
+		_login				= (String) entity.getProperty("login");
+		_password 		= (String) entity.getProperty("password");
+		_rightTypeId		= (Integer) entity.getProperty("rightTypeId");
+		_isConnected	= false;
+	}
+	
 	public User(String firstName, String lastName, Integer yearOfBirth, String email, String login, String password) {
 	
 		_firstName 		= firstName;
@@ -103,6 +115,14 @@ public class User {
 
 	public void setRightTypeId(Integer rightTypeId) {
 		this._rightTypeId = rightTypeId;
+	}
+	
+	public Key getKey() {
+		return _key;
+	}
+	
+	public void setKey(Key key) {
+		this._key = key;
 	}
 	
 	public void connect()
