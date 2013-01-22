@@ -9,24 +9,20 @@
 			rules: {
 				firstName: {
 					required: true,
-					minlength: 4
+					minlength: 4,
 				},
 				lastName: {
 					required: true,
 					minlength: 4
 				},
+				yearOfBirth: {
+					required: true,
+				}
 				email: {
 					required: true,
 					email: true
 				},
-				phone: {
-					required: true
-				},
 				login: {
-					required: true,
-					minlength: 4
-				},
-				firstName: {
 					required: true,
 					minlength: 4
 				},
@@ -53,6 +49,7 @@
 			<input type="hidden" name="action" value="submitSubscribe" />
 			<input type="text" name="firstName" placeholder="Enter first name" value="<% if(request.getParameter("firstName") != null){ out.print(request.getParameter("firstName")); } %>"/>
 			<input type="text" name="lastName" placeholder="Enter last name" value="<% if(request.getParameter("firstName") != null){ out.print(request.getParameter("lastName")); } %>"/>
+			<input type="text" name="yearOfBirth" placeholder="Enter year of birth" value="<% if(request.getParameter("yearOfBirth") != null){ out.print(request.getParameter("yearOfBirth")); } %>"/>
 			<% 
 			if(request.getParameter("error") != null && request.getParameter("error").contains("emailExists"))
 			{
@@ -69,21 +66,6 @@
 			}
 			%>
 			
-			<% 
-			if(request.getParameter("error") != null && request.getParameter("error").contains("phoneExists"))
-			{
-			%>
-			<input type="text" name="phone" placeholder="Enter phone number" class="error" value="<% if(request.getParameter("phone") != null){ out.print(request.getParameter("phone")); } %>"/>
-			<label for="phone" generated="true" class="error">Phone already exists, please choose a different one</label>		
-			<%
-			}
-			else
-			{
-			%>
-			<input type="text" name="phone" placeholder="Enter phone number" value="<% if(request.getParameter("phone") != null){ out.print(request.getParameter("phone")); } %>"/>
-			<%
-			}
-			%>
 			<% 
 			if(request.getParameter("error") != null && request.getParameter("error").contains("loginExists"))
 			{

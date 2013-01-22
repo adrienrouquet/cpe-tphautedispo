@@ -26,7 +26,7 @@ public class UserBean {
 	{
 		this.getUser().setKey(key);
 	}
-	public Key getId ( ) {
+	public Key getKey ( ) {
 		return this.getUser().getKey();
 	}
 	public void setLogin ( String login ) {
