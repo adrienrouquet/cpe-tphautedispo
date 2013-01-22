@@ -1,23 +1,14 @@
 package bean;
 
-import java.io.Serializable;
-import java.sql.Timestamp;
-import java.util.*;
-
-import AppCore.User;
-import Manager.MsgManager;
+import com.google.appengine.api.datastore.Key;
+import objects.User;
 
 
-public class UserBean implements Serializable {
+public class UserBean {
 
-	private static final long serialVersionUID = 5313606931922030655L;
 	private User _user = null;
-	private MsgManager _msgManager = null;
 	
-	public UserBean () {
-		_msgManager = new MsgManager();
-	};
-	
+	public UserBean () {};
 	
 	public User getUser() {
 		if (this._user == null) {
@@ -29,47 +20,14 @@ public class UserBean implements Serializable {
 		
 	public void setUser(User user) {
 		this._user = user;
-		this._msgManager.setSrcUserId(this._user.getId());
 	}
 
-	public int getApprovalStatus()
+	public void setKey ( Key key )
 	{
-		return this.getUser().getApprovalStatus();
+		this.getUser().setKey(key);
 	}
-	public void setApprovalStatus(int approvalStatus)
-	{
-		this.getUser().setApprovalStatus(approvalStatus);
-	}	
-	
-	public ArrayList<User> getContacts() {
-		return getUser().getContacts();
-	}
-	
-	public ArrayList<User> getContactRequests() {
-		return getUser().getContactRequests();
-	}
-	
-	public int getContactRequestsCount()
-	{
-		return getUser().getContactRequestsCount();
-	}
-	
-	public MsgManager getMsgManager() {
-		if (this._msgManager == null) {
-			this._msgManager = new MsgManager();
-			if (this.getUser().getId() != 0)
-				this._msgManager.setSrcUserId(this.getUser().getId());
-		}
-		return this._msgManager;
-	}
-	
-	public void setId ( int id )
-	{
-		this.getUser().setId(id);
-		this._msgManager.setSrcUserId(id);
-	}
-	public int getId ( ) {
-		return this.getUser().getId();
+	public Key getId ( ) {
+		return this.getUser().getKey();
 	}
 	public void setLogin ( String login ) {
 		this.getUser().setLogin(login);
@@ -82,9 +40,6 @@ public class UserBean implements Serializable {
 	}
 	public void setEmail ( String email ) {
 		this.getUser().setEmail(email);
-	}
-	public String getPhone() {
-		return this.getUser().getPhone();
 	}
 	public String getFirstName() {
 		return this.getUser().getFirstName();
@@ -106,21 +61,13 @@ public class UserBean implements Serializable {
 		return getUser().getName();
 	}
 	
-	public Timestamp getLastLoginDate() {
-		return this.getUser().getLastLoginDate();
+	public void connect() {
+		this.getUser().connect();
 	}
-
-	public void setLastLoginDate(Timestamp lastLoginDate) {
-		this.getUser().setLastLoginDate(lastLoginDate);
+	public void disconnect() {
+		this.getUser().disconnect();
 	}
-
-	public void setPhone(String phone) {
-		this.getUser().setPhone(phone);
-	}
-	public void setIsConnected ( boolean isConnected ) {
-		this.getUser().setIsConnected(isConnected);
-	}
-	public boolean getIsConnected () {
-		return this.getUser().getIsConnected();
+	public boolean isConnected () {
+		return this.getUser().isConnected();
 	}
 }
