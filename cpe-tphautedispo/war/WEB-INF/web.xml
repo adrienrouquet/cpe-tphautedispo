@@ -8,6 +8,14 @@
 		<url-pattern>/AccountServlet</url-pattern>
 	</servlet-mapping>
 	<servlet>
+		<servlet-name>FlightsServlet</servlet-name>
+		<servlet-class>controller.FlightsServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>FlightsServlet</servlet-name>
+		<url-pattern>/FlightsServlet</url-pattern>
+	</servlet-mapping>
+	<servlet>
 		<servlet-name>CoreServlet</servlet-name>
 		<servlet-class>controller.CoreServlet</servlet-class>
 	</servlet>
