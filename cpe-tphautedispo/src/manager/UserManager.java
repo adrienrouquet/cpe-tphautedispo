@@ -21,10 +21,14 @@ public abstract class UserManager {
 	
 	public static User getUserFromCredentials(String login, String password)
 	{
-		return new User(_dsut.getEntityFromCredentials(login, password));
+		return _dsut.getUserFromCredentials(login, password);
 	}
 
-	
+	public static void addUser(String firstName, String lastName, Integer yearOfBirth, String email, String login, String password)
+	{
+		User user = new User(firstName, lastName, yearOfBirth, email, login, password);
+		_dsut.putUserToDatastore(user);
+	}
 	
 //	public static ArrayList<User> getUsers()
 //	{
@@ -89,7 +93,7 @@ public abstract class UserManager {
 //	
 //	
 //	
-//	public static String userExists(String email, String phone, String login) {
+//	public static String userExists(String email, String login) {
 //		return _dbut.userExists(email,phone,login);
 //	}
 //	

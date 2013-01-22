@@ -30,7 +30,7 @@ public class UserBean implements Serializable {
 	{
 		this.getUser().setKey(key);
 	}
-	public Key getId ( ) {
+	public Key getKey ( ) {
 		return this.getUser().getKey();
 	}
 	public void setLogin ( String login ) {

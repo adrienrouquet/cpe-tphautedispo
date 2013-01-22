@@ -79,10 +79,10 @@ public class AccountServlet extends HttpServlet {
 						
 						userBean.setUser(user);
 						session.setAttribute("userBean", userBean);
-						session.setAttribute("chatRouterBean", new bean.Router());
-						System.out.println("AccountServlet: UserId " + userBean.getId() + " is now connected");
+						session.setAttribute("routerBean", new bean.Router());
+						System.out.println("AccountServlet: UserId " + userBean.getKey() + " is now connected");
 						
-						res.sendRedirect("ChatServlet");
+						res.sendRedirect("FlightsServlet");
 						return;
 					}
 					else
@@ -94,16 +94,16 @@ public class AccountServlet extends HttpServlet {
 						rd.forward(req, res);
 					}	
 				}break;
-				case "logout":
-				{
-					System.out.println("AccountServlet: Logout action received");
-					session.setAttribute("userBean", null);
-					session.setAttribute("chatRouterBean", null);
-					session.setAttribute("msgManagerBean", null);
-					session.invalidate();
-					req.getSession(true);
-					res.sendRedirect("AccountServlet");
-				}break;
+//				case "logout":
+//				{
+//					System.out.println("AccountServlet: Logout action received");
+//					session.setAttribute("userBean", null);
+//					session.setAttribute("chatRouterBean", null);
+//					session.setAttribute("msgManagerBean", null);
+//					session.invalidate();
+//					req.getSession(true);
+//					res.sendRedirect("AccountServlet");
+//				}break;
 				case "subscribe":
 				{
 					ar.setUrl("accountSubscribe.jsp");
@@ -114,22 +114,25 @@ public class AccountServlet extends HttpServlet {
 				{
 					String firstName	= req.getParameter("firstName").trim().toLowerCase();
 					String lastName		= req.getParameter("lastName").trim().toLowerCase();
-					String login 		= req.getParameter("login").trim().toLowerCase();
-					String phone		= req.getParameter("phone").trim().toLowerCase();
+					
+					Integer yearOfBirth	= Integer.parseInt(req.getParameter("yearOfBirth").trim().toLowerCase());
 					String email		= req.getParameter("email").trim().toLowerCase();
+					String login 		= req.getParameter("login").trim().toLowerCase();
 					String password 	= req.getParameter("password").trim();
 					
-					String errors 		= UserManager.userExists(email,phone,login);
+					//TODO
+					//String errors 		= UserManager.userExists(email,login);
 					
-					if(errors.equals(""))
-					{
-						UserManager.addUser(firstName,lastName,email,phone,login,password);
+					//TODO
+//					if(errors.equals(""))
+//					{
+						UserManager.addUser(firstName, lastName, yearOfBirth, email, login, password);
 						ar.setUrl("accountLogin.jsp?valid=subscribe");
-					}
-					else
-					{
-						ar.setUrl("accountSubscribe.jsp?error="+errors);						
-					}
+//					}
+//					else
+//					{
+//						ar.setUrl("accountSubscribe.jsp?error="+errors);						
+//					}
 					rd = req.getRequestDispatcher("content/account/account.jsp");
 					rd.forward(req, res);
 				}break;
