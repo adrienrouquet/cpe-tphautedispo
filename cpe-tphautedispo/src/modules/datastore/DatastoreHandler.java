@@ -1,4 +1,4 @@
-package datastore;
+package modules.datastore;
 
 import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.DatastoreServiceFactory;

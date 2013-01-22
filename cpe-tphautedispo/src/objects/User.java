@@ -94,8 +94,8 @@ public class User {
 		_entity.setProperty("yearOfBirth", _yearOfBirth);
 		_entity.setProperty("login", _login);
 		if(_password.equals(""))
-			_password = r
-		_entity.setProperty("password", _password);		
+			_password = RandomGenerator.generateRandomPassword(8);
+		_entity.setProperty("password", _password);
 	}
 	
 	public Entity getEntity()
