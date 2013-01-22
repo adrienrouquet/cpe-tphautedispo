@@ -16,7 +16,14 @@
 		<servlet-name>CoreServlet</servlet-name>
 		<url-pattern>/CoreServlet</url-pattern>
 	</servlet-mapping>
-	
+	<servlet>
+		<servlet-name>DefaultConf</servlet-name>
+		<servlet-class>install.DefaultConf</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>DefaultConf</servlet-name>
+		<url-pattern>/defaultconf</url-pattern>
+	</servlet-mapping>
 	<servlet>
 		<servlet-name>AdminServlet</servlet-name>
 		<servlet-class>controller.AdminServlet</servlet-class>
