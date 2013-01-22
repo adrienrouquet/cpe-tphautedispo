@@ -11,11 +11,13 @@ import objects.User;
 public class AdminServlet extends HttpServlet {
 	public void doGet(HttpServletRequest req, HttpServletResponse res)throws IOException
 	{
+		test(req,res);
 		adminRouting(req, res);
 	}
 	
 	public void doPost(HttpServletRequest req, HttpServletResponse res)throws IOException
 	{
+		test(req,res);
 		adminRouting(req, res);
 	}
 
@@ -48,5 +50,18 @@ public class AdminServlet extends HttpServlet {
 		} catch (ServletException e) {
 			System.err.println("ERROR IN adminRouting: " + e.getMessage());
 		}
+	}
+	
+	private void test(HttpServletRequest req, HttpServletResponse res) throws IOException {
+		HttpSession session = req.getSession(true);
+		
+		User user = new User();
+		user.setFirstName("Adrien");
+		user.setLastName("ROUQUET");
+		user.setRightTypeId(1);
+		
+		bean.UserBean userBean = new bean.UserBean();
+		userBean.setUser(user);
+		session.setAttribute("userBean", userBean);
 	}
 }

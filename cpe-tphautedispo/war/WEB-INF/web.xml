@@ -7,6 +7,7 @@
 		<servlet-name>AccountServlet</servlet-name>
 		<url-pattern>/AccountServlet</url-pattern>
 	</servlet-mapping>
+	
 	<servlet>
 		<servlet-name>CoreServlet</servlet-name>
 		<servlet-class>controller.CoreServlet</servlet-class>
@@ -14,6 +15,15 @@
 	<servlet-mapping>
 		<servlet-name>CoreServlet</servlet-name>
 		<url-pattern>/CoreServlet</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>AdminServlet</servlet-name>
+		<servlet-class>controller.AdminServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>AdminServlet</servlet-name>
+		<url-pattern>/AdminServlet</url-pattern>
 	</servlet-mapping>
 	<welcome-file-list>
 		<welcome-file>index.html</welcome-file>
