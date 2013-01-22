@@ -4,13 +4,15 @@ import com.google.appengine.api.datastore.Entity;
 
 public class User {
 	
-	private String _firstName 		= "";
-	private String _lastName 		= "";
-	private Integer _yearOfBirth 	= 0;
-	private String _email 				= "";
-	private String _login 				= "";
-	private String _password 		= "";
-	private Entity _entity 				= null;
+	private String _firstName 			= "";
+	private String _lastName 			= "";
+	private Integer _yearOfBirth 		= 0;
+	private String _email 					= "";
+	private String _login 					= "";
+	private String _password 			= "";
+	private Integer _rightTypeId		= 0;
+	private Boolean _isConnected 	= false;
+	private Entity _entity 					= null;
 	
 	public User(String firstName, String lastName, Integer yearOfBirth, String email, String login, String password) {
 	
@@ -20,6 +22,7 @@ public class User {
 		_email 				= email;
 		_login				= login;
 		_password 		= password;
+		_rightTypeId		= 3;
 		
 		this.setEntity();	
 	}
@@ -31,6 +34,7 @@ public class User {
 		_yearOfBirth 	= yearOfBirth;
 		_email 				= email;
 		_login				= login;
+		_rightTypeId		= 3;
 		
 		this.setEntity();
 		
@@ -39,8 +43,6 @@ public class User {
 	public String getFirstName() {
 		return _firstName;
 	}
-
-
 
 	public void setFirstName(String firstName) {
 		this._firstName = firstName;
@@ -85,7 +87,15 @@ public class User {
 	public void setPassword(String password) {
 		this._password = password;
 	}
+	
+	public Integer getRightTypeId() {
+		return _rightTypeId;
+	}
 
+	public void setRightTypeId(Integer rightTypeId) {
+		this._rightTypeId = rightTypeId;
+	}
+	
 	public void setEntity()
 	{
 		_entity = new Entity("User");
@@ -101,6 +111,28 @@ public class User {
 	public Entity getEntity()
 	{
 		return _entity;
+	}
+	
+	public void connect()
+	{
+		this._isConnected = true;
+	}
+	
+	public void disconnect()
+	{
+		this._isConnected = false;
+	}
+
+	public Boolean isConnected()
+	{
+		return _isConnected;
+	}
+	
+	public Boolean isAdmin()
+	{
+		if(_rightTypeId == 1)
+			return true;
+		return false;
 	}
 	
 }

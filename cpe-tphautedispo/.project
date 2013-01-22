@@ -41,4 +41,11 @@
 		<nature>com.google.appengine.eclipse.core.gaeNature</nature>
 		<nature>org.eclipse.wst.common.project.facet.core.nature</nature>
 	</natures>
+	<linkedResources>
+		<link>
+			<name>jdk1.7.0_10</name>
+			<type>2</type>
+			<location>/opt/jdk1.7.0_10</location>
+		</link>
+	</linkedResources>
 </projectDescription>
