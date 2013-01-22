@@ -4,7 +4,7 @@ import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.PreparedQuery;
 import com.google.appengine.api.datastore.Query;
 
-public class DatastoreUserToolbox extends DatastoreHandler{
+public class DatastoreUserToolbox extends DatastoreToolbox{
 
 	public Entity getEntityFromCredentials(String login, String password)
 	{

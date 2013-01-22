@@ -6,10 +6,10 @@ import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.EntityNotFoundException;
 import com.google.appengine.api.datastore.Key;
 
-public class DatastoreHandler {
+public class DatastoreToolbox {
 	DatastoreService datastore = null;
 	
-	public DatastoreHandler()
+	public DatastoreToolbox()
 	{
 		datastore = DatastoreServiceFactory.getDatastoreService();
 	}
