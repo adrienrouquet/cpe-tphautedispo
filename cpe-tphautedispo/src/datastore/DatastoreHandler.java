@@ -5,8 +5,6 @@ import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.EntityNotFoundException;
 import com.google.appengine.api.datastore.Key;
-import com.google.appengine.api.datastore.PreparedQuery;
-import com.google.appengine.api.datastore.Query;
 
 public class DatastoreHandler {
 	DatastoreService datastore = null;
@@ -24,6 +22,11 @@ public class DatastoreHandler {
 	public Entity getEntityFromKey(Key key) throws EntityNotFoundException
 	{
 		return datastore.get(key);
+	}
+	
+	public void removeEntityFromDatastore(Key key)
+	{
+		datastore.delete(key);
 	}
 	
 }
