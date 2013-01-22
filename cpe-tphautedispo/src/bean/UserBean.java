@@ -1,11 +1,15 @@
 package bean;
 
+import java.io.Serializable;
+
 import com.google.appengine.api.datastore.Key;
 import objects.User;
 
 
-public class UserBean {
+public class UserBean implements Serializable {
 
+	private static final long serialVersionUID = 3990847190742761461L;
+	
 	private User _user = null;
 	
 	public UserBean () {};

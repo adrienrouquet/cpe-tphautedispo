@@ -1,10 +1,13 @@
 package objects;
 
+import java.io.Serializable;
+
 import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.Key;
 
-public class User {
+public class User implements Serializable{
 	
+	private static final long serialVersionUID = 1L;
 	private Key _key							= null;
 	private String _firstName 			= "";
 	private String _lastName 			= "";
