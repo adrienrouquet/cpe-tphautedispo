@@ -1,12 +1,11 @@
 package controller;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
 import javax.servlet.http.*;
-
 import objects.User;
-
-import bean.Router;
-import bean.UserBean;
 
 @SuppressWarnings("serial")
 public class AdminServlet extends HttpServlet {
@@ -22,23 +21,32 @@ public class AdminServlet extends HttpServlet {
 
 	private void adminRouting(HttpServletRequest req, HttpServletResponse res) throws IOException {
 		
-		UserBean userBean = (UserBean) req.getAttribute("userBean");
+		HttpSession session = req.getSession(true);
 		
-		User user = userBean.getUser();
+		bean.UserBean userBean = (bean.UserBean) session.getAttribute("userBean");
 		
-		if (!user.isAdmin()) {
+		if (userBean == null || userBean.getUser() == null || !userBean.getUser().isAdmin()) {
 			res.sendRedirect("AccountServlet");
 		}
 		
-		Router router = (Router) req.getAttribute("routerBean");
+		bean.Router router = (bean.Router) session.getAttribute("adminRouterBean");
 		
 		switch (router.getAction()) {
 		case "manageFlight":
-			
+			router.setUrl("manageFlight.jsp");
 			break;
-
+		case "manageUser":
+			router.setUrl("manageUser.jsp");
+			break;
 		default:
 			break;
+		}
+		
+		try {
+			RequestDispatcher rd = req.getRequestDispatcher("content/admin/admin.jsp");
+			rd.forward(req, res);
+		} catch (ServletException e) {
+			System.err.println("ERROR IN adminRouting: " + e.getMessage());
 		}
 	}
 }
