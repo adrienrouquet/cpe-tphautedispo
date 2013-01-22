@@ -29,6 +29,7 @@ public class User {
 		_login				= (String) entity.getProperty("login");
 		_password 		= (String) entity.getProperty("password");
 		_rightTypeId		= (Integer) entity.getProperty("rightTypeId");
+		_key					= entity.getKey();
 		_isConnected	= false;
 	}
 	
