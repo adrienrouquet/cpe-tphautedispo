@@ -5,17 +5,15 @@ import java.sql.SQLException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
+//import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import Manager.UserManager;
-import AppCore.User;
+import manager.UserManager;
+import objects.User;
 
-
-@WebServlet("/AccountServlet")
 public class AccountServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -43,20 +41,20 @@ public class AccountServlet extends HttpServlet {
 		RequestDispatcher rd 	= null;
 		
 		//On recupere le accountRouterBean de la session
-		Bean.Router ar 	= (Bean.Router) session.getAttribute("accountRouterBean");
+		bean.Router ar 	= (bean.Router) session.getAttribute("accountRouterBean");
 		if(ar == null)
 		{
 			System.out.println("Warning: accountRouterBean is null in AccountServlet");
-    		ar = new Bean.Router();
+    		ar = new bean.Router();
 			session.setAttribute("accountRouterBean", ar);
 		}
 		
 		//On recupere le UserBean de la session
-		Bean.UserBean userBean 			= (Bean.UserBean) session.getAttribute("userBean");		
+		bean.UserBean userBean 			= (bean.UserBean) session.getAttribute("userBean");		
 		if(userBean == null)
 		{
 			System.out.println("Warning: userBean is null in AccountServlet");
-			userBean	=  new Bean.UserBean();
+			userBean	=  new bean.UserBean();
 			session.setAttribute("userBean", userBean);
 		}
 		
@@ -76,19 +74,21 @@ public class AccountServlet extends HttpServlet {
 						System.out.println("AccountServlet: Connecting user");
 						//On recupere le user de la database et on le set dans un bean session
 						//On set au passage le chatRouterBean en session aussi
-						User user = UserManager.getUserConnected(login);
-						if (user == null) {
-							user = UserManager.getUser(login);
-							user.setIsConnected(true);
-						}
 						
-						userBean.setUser(user);
-						session.setAttribute("userBean", userBean);
-						session.setAttribute("chatRouterBean", new Bean.Router());
-						System.out.println("AccountServlet: UserId " + userBean.getId() + " is now connected");
+						//TODO
+//						User user = UserManager.getUserConnected(login);
+//						if (user == null) {
+//							user = UserManager.getUser(login);
+//							user.setIsConnected(true);
+//						}
 						
-						res.sendRedirect("ChatServlet");
-						return;
+//						userBean.setUser(user);
+//						session.setAttribute("userBean", userBean);
+//						session.setAttribute("chatRouterBean", new bean.Router());
+//						System.out.println("AccountServlet: UserId " + userBean.getId() + " is now connected");
+//						
+//						res.sendRedirect("ChatServlet");
+//						return;
 					}
 					else
 					{
