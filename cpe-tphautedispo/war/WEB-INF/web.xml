@@ -5,7 +5,7 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>AccountServlet</servlet-name>
-		<url-pattern>/AccountServlet</url-pattern>
+		<url-pattern>/accountservlet</url-pattern>
 	</servlet-mapping>
 	
 	<servlet>
@@ -14,15 +14,16 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>FlightsServlet</servlet-name>
-		<url-pattern>/FlightsServlet</url-pattern>
+		<url-pattern>/flightsservlet</url-pattern>
 	</servlet-mapping>
 	<servlet>
 		<servlet-name>CoreServlet</servlet-name>
 		<servlet-class>controller.CoreServlet</servlet-class>
+		
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>CoreServlet</servlet-name>
-		<url-pattern>/CoreServlet</url-pattern>
+		<url-pattern>/coreservlet</url-pattern>
 	</servlet-mapping>
 	<servlet>
 		<servlet-name>DefaultConf</servlet-name>
@@ -38,7 +39,7 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>AdminServlet</servlet-name>
-		<url-pattern>/AdminServlet</url-pattern>
+		<url-pattern>/adminservlet</url-pattern>
 	</servlet-mapping>
 	<welcome-file-list>
 		<welcome-file>index.html</welcome-file>
