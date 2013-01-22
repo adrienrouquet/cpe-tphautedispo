@@ -1,9 +1,11 @@
 package objects;
 
 import com.google.appengine.api.datastore.Entity;
+import com.google.appengine.api.datastore.Key;
 
 public class User {
 	
+	private Key _key							= null;
 	private String _firstName 			= "";
 	private String _lastName 			= "";
 	private Integer _yearOfBirth 		= 0;
@@ -12,7 +14,11 @@ public class User {
 	private String _password 			= "";
 	private Integer _rightTypeId		= 0;
 	private Boolean _isConnected 	= false;
-	private Entity _entity 					= null;
+	
+	
+	public User()
+	{
+	}
 	
 	public User(String firstName, String lastName, Integer yearOfBirth, String email, String login, String password) {
 	
@@ -23,8 +29,7 @@ public class User {
 		_login				= login;
 		_password 		= password;
 		_rightTypeId		= 3;
-		
-		this.setEntity();	
+		_isConnected	= false;
 	}
 	
 	public User(String firstName, String lastName, Integer yearOfBirth, String email, String login) {
@@ -35,9 +40,13 @@ public class User {
 		_email 				= email;
 		_login				= login;
 		_rightTypeId		= 3;
-		
-		this.setEntity();
-		
+		_isConnected	= false;
+	}
+	
+	
+	
+	public String getName() {
+		return _firstName + " " + _lastName;
 	}
 	
 	public String getFirstName() {
@@ -94,23 +103,6 @@ public class User {
 
 	public void setRightTypeId(Integer rightTypeId) {
 		this._rightTypeId = rightTypeId;
-	}
-	
-	public void setEntity()
-	{
-		_entity = new Entity("User");
-		_entity.setProperty("firstName", _firstName);
-		_entity.setProperty("lastName", _lastName);
-		_entity.setProperty("yearOfBirth", _yearOfBirth);
-		_entity.setProperty("login", _login);
-		if(_password.equals(""))
-			_password = RandomGenerator.generateRandomPassword(8);
-		_entity.setProperty("password", _password);
-	}
-	
-	public Entity getEntity()
-	{
-		return _entity;
 	}
 	
 	public void connect()
