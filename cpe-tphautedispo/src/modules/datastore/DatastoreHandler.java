@@ -19,9 +19,20 @@ public class DatastoreHandler {
 		datastore.put(entity);
 	}
 	
-	public Entity getEntityFromKey(Key key) throws EntityNotFoundException
+	public Entity getEntityFromKey(Key key)
 	{
-		return datastore.get(key);
+		Entity entity = null;
+		
+		try
+		{
+			entity = datastore.get(key);
+		}
+		catch (EntityNotFoundException e)
+		{
+			System.err.println("Error in getEntityFromKey: " + e.getMessage());
+		}
+		
+		return entity;
 	}
 	
 	public void removeEntityFromDatastore(Key key)

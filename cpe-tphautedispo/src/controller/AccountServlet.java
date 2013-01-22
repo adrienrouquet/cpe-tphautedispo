@@ -73,22 +73,17 @@ public class AccountServlet extends HttpServlet {
 					{
 						System.out.println("AccountServlet: Connecting user");
 						//On recupere le user de la database et on le set dans un bean session
-						//On set au passage le chatRouterBean en session aussi
 						
-						//TODO
-//						User user = UserManager.getUserConnected(login);
-//						if (user == null) {
-//							user = UserManager.getUser(login);
-//							user.setIsConnected(true);
-//						}
+						User user = UserManager.getUserFromCredentials(login, password);
+						user.connect();
 						
-//						userBean.setUser(user);
-//						session.setAttribute("userBean", userBean);
-//						session.setAttribute("chatRouterBean", new bean.Router());
-//						System.out.println("AccountServlet: UserId " + userBean.getId() + " is now connected");
-//						
-//						res.sendRedirect("ChatServlet");
-//						return;
+						userBean.setUser(user);
+						session.setAttribute("userBean", userBean);
+						session.setAttribute("chatRouterBean", new bean.Router());
+						System.out.println("AccountServlet: UserId " + userBean.getId() + " is now connected");
+						
+						res.sendRedirect("ChatServlet");
+						return;
 					}
 					else
 					{

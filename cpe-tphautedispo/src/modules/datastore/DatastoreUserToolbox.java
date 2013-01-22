@@ -19,5 +19,22 @@ public class DatastoreUserToolbox extends DatastoreHandler{
 		}
 		return null;
 	}
+	
+//	public Entity getIsConnected(String login)
+//	{
+//		return null;
+//	}
+	
+	public boolean checkCredentials(String login, String password)
+	{
+		boolean valid = false;
+		
+		if (getEntityFromCredentials(login, password) != null)
+		{
+			valid = true;
+		}
+		
+		return valid;
+	}
 
 }
