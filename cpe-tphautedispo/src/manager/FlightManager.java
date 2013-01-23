@@ -2,7 +2,11 @@ package manager;
 
 
 import modules.datastore.DatastoreFlightToolbox;
+
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+
 import objects.Flight;
 
 public abstract class FlightManager {
@@ -12,4 +16,10 @@ public abstract class FlightManager {
 	public static ArrayList<Flight> getFlights() {
 		return _dftb.getFlights();
 	}
+	
+	public static String TimeFormatted(Date date)
+	{
+		return new SimpleDateFormat("MM/dd/yyyy 'at' HH:mm").format(date);
+	}
+	
 }

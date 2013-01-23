@@ -2,55 +2,44 @@
 <%@page import="java.sql.Timestamp"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="manager.UserManager"%>
-<%@page import="AppCore.User"%>
-<jsp:useBean id="userBean" class="bean.UserBean" scope="session" />
-<jsp:useBean id="searchUserBean" class="bean.UserBean" scope="session" />
-<jsp:useBean id="chatRouterBean" class="bean.Router" scope="session" />
+<%@page import="manager.FlightManager"%>
+<%@page import="objects.Flight"%>
+<jsp:useBean id="flightBean" class="bean.FlightBean" scope="session" />
+<jsp:useBean id="flightRouterBean" class="bean.Router" scope="session" />
 
 <script type="text/javascript" src="script/websocketContact.js"></script>
 
 <h2>Search results</h2>
-<form method="post" id="addContactForm" name="addContactForm" action="ChatServlet">
-	<input type="hidden" name="action" value="addContact" />
-	<input type="hidden" name="contactId" value="0"/>
-
+<form method="post" id="ChooseFlightForm" name="ChooseFlightForm" action="flightsservlet">
+	
 	<%
-		ArrayList<User> users = null;
+		ArrayList<Flight> flights = null;
 		
-		if (searchUserBean.getLogin().compareTo("") != 0)
-		{	
-			//On remplit le champ "login" avec la "searchString" pour effectuer une recherche
-			users = UserManager.findContacts(userBean.getId(),searchUserBean.getLogin());
+			//On remplit le champ "flightNumber" avec la "searchString" pour effectuer une recherche
+			flights = FlightManager.getFlights();
 			
-			if (users != null)
+			if (flights != null)
 			{
-				if(users.size() > 0)
+				if(flights.size() > 0)
 				{
-					for(User user : users)
+					for(Flight flight : flights)
 					{
 	%>
 
-					<div id="contactWrapper<%= user.getId() %>" class="contactWrapperNoHover" >
-						<div class="addContactName">
-							<%= user.getName() %>
-							<br />Login:
-							<%= user.getLogin() %>
+					<div id="contactWrapper<%= flight.getKeyAsString()%>" class="contactWrapperNoHover" >
+						<div class="selectFlightDisplay">
+							Flight #<%= flight.getFlightNumber()%>
+							<br />Departure: <%= flight.getDepartureAirport()%> at <%= FlightManager.TimeFormatted(flight.getDepartureTime())%>
+							<br />Arrival: <%= flight.getArrivalAirport()%> at <%= FlightManager.TimeFormatted(flight.getArrivalTime())%>
+							<br />Available seats: <%= flight.getAvailableSeats().toString()%>
 						</div>
-						<input type="button" class="imageButton add floatRight w40 h40" value="" onclick="setValue('addContactForm','contactId','<%= user.getId() %>');submitForm('addContactForm');"/>	
+<%-- 						<input type="button" class="imageButton add floatRight w40 h40" value="" onclick="setValue('addContactForm','contactId','<%= user.getId() %>');submitForm('addContactForm');"/>	 --%>
 					</div>
 
 	<%
 					}
 				}
 			
-				else{
-											
-	%>
-					<h2>Sorry, no result found...</h2>
-	<%	
-				}
 			}
-		}
 	%>
 </form>

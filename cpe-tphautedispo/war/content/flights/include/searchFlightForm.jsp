@@ -15,10 +15,10 @@
 	});		
 </script>
 
-<form name="mainForm" id="mainForm" method="post" action="flightsServlet">
-	<div class="contactName">
+<form name="mainForm" id="mainForm" method="post" action="flightsservlet">
+	<div class="flightName">
 		<input type="hidden" name="action" value="view"/>
-		<input placeholder="Search a contact..." type="text" id="searchString" name="searchString" />
-		<input type="button" value="Find Contact" onclick="setValue('mainForm','action','findContact');submitForm('mainForm');"/>
+		<input placeholder="Search a flight..." type="text" id="searchString" name="searchString" />
+		<input type="button" value="Find Flight" onclick="setValue('mainForm','action','findFlight');submitForm('mainForm');"/>
 	</div>
 </form>
