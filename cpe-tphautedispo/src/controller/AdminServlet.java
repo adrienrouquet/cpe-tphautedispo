@@ -7,8 +7,10 @@ import javax.servlet.ServletException;
 import javax.servlet.http.*;
 import objects.User;
 
-@SuppressWarnings("serial")
 public class AdminServlet extends HttpServlet {
+
+	private static final long serialVersionUID = 1L;
+
 	public void doGet(HttpServletRequest req, HttpServletResponse res)throws IOException
 	{
 		test(req,res);
@@ -63,5 +65,6 @@ public class AdminServlet extends HttpServlet {
 		bean.UserBean userBean = new bean.UserBean();
 		userBean.setUser(user);
 		session.setAttribute("userBean", userBean);
+		session.setAttribute("adminRouterBean", new bean.Router());
 	}
 }
