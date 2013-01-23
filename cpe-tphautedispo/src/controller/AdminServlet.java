@@ -72,11 +72,11 @@ public class AdminServlet extends HttpServlet {
 				router.setUrl("adminManageUsers.jsp");
 				break;
 			case deleteUser:
+				System.out.println("Entering Delete user");
 				if(req.getParameter("userKey") != null)
 				{
-					UserManager.deleteUser(KeyFactory.createKey("User", req.getParameter("userKey")));
+					UserManager.deleteUser(KeyFactory.stringToKey(req.getParameter("userKey")));
 				}
-				
 				break;
 			case view:
 				router.setUrl("adminDefaultView.jsp");
