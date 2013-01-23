@@ -33,7 +33,7 @@ public class AdminServlet extends HttpServlet {
 		}
 		
 		bean.Router router = (bean.Router) session.getAttribute("adminRouterBean");
-		
+		//
 		switch (router.getAction()) {
 		case "manageFlight":
 			router.setUrl("manageFlight.jsp");
