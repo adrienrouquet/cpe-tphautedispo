@@ -23,7 +23,17 @@ public abstract class FlightManager implements Serializable{
 		return _dftb.getFlights();
 	}
 	
-	public static String TimeFormatted(Date date)
+	public static String getDay(Date date)
+	{
+		return new SimpleDateFormat("MM/dd/yyyy").format(date);
+	}
+	
+	public static String getTime(Date date)
+	{
+		return new SimpleDateFormat("HH:mm").format(date);
+	}
+	
+	public static String getDayAndTime(Date date)
 	{
 		return new SimpleDateFormat("MM/dd/yyyy 'at' HH:mm").format(date);
 	}
