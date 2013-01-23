@@ -36,7 +36,7 @@ public class AdminServlet extends HttpServlet {
 		bean.UserBean userBean = (bean.UserBean) session.getAttribute("userBean");
 		
 		if (userBean == null || userBean.getUser() == null || !userBean.getUser().isAdmin()) {
-			res.sendRedirect("AccountServlet");
+			res.sendRedirect("accountservlet");
 		}
 		
 		bean.Router router = (bean.Router) session.getAttribute("adminRouterBean");
@@ -60,10 +60,10 @@ public class AdminServlet extends HttpServlet {
 		switch(actionenum)
 		{
 			case manageFlights:
-				router.setUrl("manageFlights.jsp");
+				router.setUrl("adminManageFlights.jsp");
 				break;
 			case manageUsers:
-				router.setUrl("manageUsers.jsp");
+				router.setUrl("adminManageUsers.jsp");
 				break;
 			default:
 				router.setUrl("adminDefaultView.jsp");
