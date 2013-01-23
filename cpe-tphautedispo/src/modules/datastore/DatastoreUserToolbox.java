@@ -8,6 +8,9 @@ import com.google.appengine.api.datastore.Query;
 
 public class DatastoreUserToolbox extends DatastoreToolbox{
 
+	public DatastoreUserToolbox(){
+		System.out.println("Entering DatastoreUserToolbox constructor");
+	}
 	public User getUserFromCredentials(String login, String password)
 	{
 		Query q = new Query("User");
@@ -48,6 +51,7 @@ public class DatastoreUserToolbox extends DatastoreToolbox{
 		userEntity.setProperty("login", user.getLogin());
 		userEntity.setProperty("password", user.getPassword());
 		userEntity.setProperty("rightTypeId", user.getRightTypeId());
+		datastore.put(userEntity);
 	}
 
 }
