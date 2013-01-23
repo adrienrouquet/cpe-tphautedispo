@@ -92,8 +92,14 @@ public class AccountServlet extends HttpServlet {
 						session.setAttribute("userBean", userBean);
 						session.setAttribute("routerBean", new bean.Router());
 						System.out.println("AccountServlet: UserId " + userBean.getKey() + " is now connected");
-						
-						res.sendRedirect("flightsservlet");
+						if(user.isAdmin())
+						{
+							res.sendRedirect("adminservlet");
+						}
+						else
+						{
+							res.sendRedirect("flightsservlet");
+						}
 						return;
 					}
 					else
@@ -103,7 +109,7 @@ public class AccountServlet extends HttpServlet {
 						router.setUrl("accountLogin.jsp");
 						rd = req.getRequestDispatcher("/content/account/account.jsp");
 						rd.forward(req, res);
-					}	
+					}
 				}break;
 //				case "logout":
 //				{

@@ -25,13 +25,11 @@ public class AdminServlet extends HttpServlet {
 	
 	public void doGet(HttpServletRequest req, HttpServletResponse res)throws IOException
 	{
-		test(req,res);
 		adminRouting(req, res);
 	}
 	
 	public void doPost(HttpServletRequest req, HttpServletResponse res)throws IOException
 	{
-		test(req,res);
 		adminRouting(req, res);
 	}
 
