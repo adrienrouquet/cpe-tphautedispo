@@ -55,7 +55,7 @@ public class AdminServlet extends HttpServlet {
 		
 		Action actionenum = Action.view;
 		String actionstring = req.getParameter("action");
-
+		System.out.println(actionstring);
 		for(Action a : Action.values())
 		{
 			if (a.toString().equalsIgnoreCase(actionstring))
