@@ -22,7 +22,8 @@ public class FlightsServlet extends HttpServlet {
     private enum Action
 	{
 		defaultView,
-		backToDefaultView
+		backToDefaultView,
+		findFlight
 	}
     
     private void routing(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException
@@ -42,13 +43,13 @@ public class FlightsServlet extends HttpServlet {
 		if (!userBean.getUser().isConnected())
 			userBean.getUser().connect();
 		
-//		//On recupere le searchBean de la session    
-//    	bean.UserBean searchBean	= (bean.UserBean) session.getAttribute("searchBean");		
-//		if(searchBean == null || searchBean.getUser().getKey() == null)
-//		{
-//			System.out.println("Warning: searchBean is null in ChatServlet");
-//			searchBean = new
-//		}
+		//On recupere le searchFlightBean de la session    
+    	bean.FlightBean searchFlightBean	= (bean.FlightBean) session.getAttribute("searchFlightBean");		
+		if(searchFlightBean == null || searchFlightBean.getFlight().getKey() == null)
+		{
+			System.out.println("Warning: searchFlightBean is null in ChatServlet");
+			searchFlightBean = new bean.FlightBean();
+		}
 		
 		//On recupere le flightsRouterBean de la session    	
     	bean.Router router 		= (bean.Router) session.getAttribute("flightsRouterBean");
@@ -73,24 +74,39 @@ public class FlightsServlet extends HttpServlet {
 		}
 		switch(actionenum)
 		{
-			case backToDefaultView:
+		case findFlight:
+		{
+			// Le searchUserBean est sense etre null avant la recherche
+			if (searchFlightBean == null)
 			{
-				
-			}break;
+				searchFlightBean		=  new bean.FlightBean();				
+			}
+			String searchFrom 		= req.getParameter("searchFrom").trim();
+			String searchTo 		= req.getParameter("searchTo").trim();
 			
-			case defaultView:
-			{
-				router.setAction("defaultView");
-				router.setUrl("searchFlights.jsp");
+			searchFlightBean.setDepartureAirport(searchFrom);
+			searchFlightBean.setArrivalAirport(searchTo);
+			
+			session.setAttribute("searchFlightBean", searchFlightBean);
+			
+			router.setUrl("searchFlights.jsp");	
+		}break;
+		
+		case defaultView:
+		{
+			searchFlightBean = new bean.FlightBean();
+			router.setAction("defaultView");
+			router.setUrl("searchFlights.jsp");
 
-			}break;
-				
-	      	default:
-	    	{
-	    		router.setAction("defaultView");
-				router.setUrl("searchFlights.jsp");
-				
-	    	}break;
+		}break;
+			
+      	default:
+    	{
+    		searchFlightBean = new bean.FlightBean();
+    		router.setAction("defaultView");
+			router.setUrl("searchFlights.jsp");
+			
+    	}break;
 		}
 		
 		rd = req.getRequestDispatcher("/content/flights/flights.jsp");

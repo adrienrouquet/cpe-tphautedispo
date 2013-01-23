@@ -64,4 +64,19 @@ public class DatastoreFlightToolbox extends DatastoreToolbox{
 		return flights;		
 	}
 
+	public ArrayList<Flight> getFlights(String departureAirport, String arrivalAirport)
+	{
+		ArrayList<Flight> flights = new ArrayList<Flight>();
+		
+		Query q = new Query("Flight");
+		q.setFilter(new Query.FilterPredicate("departureAirport", Query.FilterOperator.EQUAL,departureAirport));
+		q.setFilter(new Query.FilterPredicate("arrivalAirport", Query.FilterOperator.EQUAL,arrivalAirport));
+		
+		PreparedQuery pq = datastore.prepare(q);
+		
+		for(Entity rs : pq.asIterable()){
+			flights.add(new Flight(rs));
+		}
+		return flights;		
+	}
 }

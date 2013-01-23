@@ -34,6 +34,12 @@
 		<div class="valid" style="display: inline-block;">Account created Successfully</div>		
 		<%
 			}
+			if(request.getParameter("valid") != null && request.getParameter("valid").contains("changePassword"))
+			{
+		%>
+		<div class="valid" style="display: inline-block;">Password has been changed Successfully</div>
+		<%
+			}
 		%>
 		<form method="post" id="accountLoginForm" action="accountservlet">
 			<input type="hidden" name="action" value="login"/>
