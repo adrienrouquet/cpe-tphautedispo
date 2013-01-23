@@ -6,7 +6,6 @@ public class EmailUserToolbox extends EmailToolbox{
 	
 	public void sendSubscriptionConfirmation(User user)
 	{
-		_emailFrom 			= "subscribe@souple-airlines.com";
 		_emailFromDescr 	= "Souple Airlines";
 		_emailTo				= user.getEmail();
 		_emailToDescr		= user.getName();
@@ -16,7 +15,6 @@ public class EmailUserToolbox extends EmailToolbox{
 	}
 	public void sendNewPassword(User user)
 	{
-		_emailFrom 			= "password@souple-airlines.com";
 		_emailFromDescr 	= "Souple Airlines";
 		_emailTo				= user.getEmail();
 		_emailToDescr		= user.getName();

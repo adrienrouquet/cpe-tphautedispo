@@ -111,16 +111,15 @@ public class AccountServlet extends HttpServlet {
 						rd.forward(req, res);
 					}
 				}break;
-//				case "logout":
-//				{
-//					System.out.println("AccountServlet: Logout action received");
-//					session.setAttribute("userBean", null);
-//					session.setAttribute("chatRouterBean", null);
-//					session.setAttribute("msgManagerBean", null);
-//					session.invalidate();
-//					req.getSession(true);
-//					res.sendRedirect("AccountServlet");
-//				}break;
+				case logout:
+				{
+					System.out.println("AccountServlet: Logout action received");
+					session.setAttribute("userBean", null);
+					session.setAttribute("RouterBean", null);
+					session.invalidate();
+					req.getSession(true);
+					res.sendRedirect("accountservlet");
+				}break;
 				case subscribe:
 				{
 					router.setUrl("accountSubscribe.jsp");
@@ -170,6 +169,7 @@ public class AccountServlet extends HttpServlet {
 	private enum Action
 	{
 		login,
+		logout,
 		subscribe,
 		submitSubscribe
 	}
