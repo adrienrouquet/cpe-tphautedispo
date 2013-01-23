@@ -5,7 +5,6 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.*;
 
-import modules.datastore.DatastoreUserToolbox;
 import objects.User;
 import com.google.appengine.api.datastore.Key;
 import com.google.appengine.api.datastore.KeyFactory;
@@ -77,6 +76,9 @@ public class AdminServlet extends HttpServlet {
 					dsut.removeEntityFromDatastore(KeyFactory.createKey("User", req.getParameter("userKey")));
 				}
 				
+				break;
+			case view:
+				router.setUrl("adminDefaultView.jsp");
 				break;
 			default:
 				router.setUrl("adminDefaultView.jsp");
