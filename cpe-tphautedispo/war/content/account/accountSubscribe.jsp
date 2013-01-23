@@ -45,7 +45,7 @@
 		<br /><br /><h2>Create an account</h2>
 	</header>
 	<section class="noAbsolute">
-		<form method="post" action="AccountServlet" id="accountSubscribeForm">
+		<form method="post" action="accountservlet" id="accountSubscribeForm">
 			<input type="hidden" name="action" value="submitSubscribe" />
 			<input type="text" name="firstName" placeholder="Enter first name" value="<% if(request.getParameter("firstName") != null){ out.print(request.getParameter("firstName")); } %>"/>
 			<input type="text" name="lastName" placeholder="Enter last name" value="<% if(request.getParameter("firstName") != null){ out.print(request.getParameter("lastName")); } %>"/>

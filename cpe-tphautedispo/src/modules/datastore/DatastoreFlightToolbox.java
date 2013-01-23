@@ -8,27 +8,25 @@ import com.google.appengine.api.datastore.Key;
 import com.google.appengine.api.datastore.PreparedQuery;
 import com.google.appengine.api.datastore.Query;
 
-public class DatastoreUserToolbox extends DatastoreToolbox{
+public class DatastoreFlightToolbox extends DatastoreToolbox{
 
-	public DatastoreUserToolbox(){
-		System.out.println("Entering DatastoreUserToolbox constructor");
+	public DatastoreFlightToolbox(){
+		System.out.println("Entering DatastoreFlightToolbox constructor");
 	}
-	public User getUserFromCredentials(String login, String password)
-	{
-		Query q = new Query("User");
-		q.setFilter(new Query.FilterPredicate("login", Query.FilterOperator.EQUAL,login));
-		q.setFilter(new Query.FilterPredicate("password", Query.FilterOperator.EQUAL,password));
+	public User getFlightFromFlightNumber(String flightNumber){
+		Query q = new Query("Flight");
+		q.setFilter(new Query.FilterPredicate("flightNumber", Query.FilterOperator.EQUAL,flightNumber));
 		
 		PreparedQuery pq = datastore.prepare(q);
 		
 		for(Entity rs : pq.asIterable()){
-			return new User(rs);
+			return new Flight(rs);
 		}
 		return null;
 	}
-	public User getUserFromKey(Key key)
+	public Flight getFlightFromKey(Key key)
 	{
-		return new User(getEntityFromKey(key));
+		return new Flight(getEntityFromKey(key));
 	}
 	public boolean checkCredentials(String login, String password)
 	{
