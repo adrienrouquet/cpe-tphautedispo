@@ -1,8 +1,6 @@
 package manager;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-
 import com.google.appengine.api.datastore.Key;
 
 import objects.User;
@@ -35,6 +33,10 @@ public abstract class UserManager {
 	public static String userExists(String email, String login)
 	{
 		return _dsut.userExists(email, login);
+	}
+	
+	public static ArrayList<User> getUsers() {
+		return _dsut.getUsers();
 	}
 	
 	public static void deleteUser(Key key)
