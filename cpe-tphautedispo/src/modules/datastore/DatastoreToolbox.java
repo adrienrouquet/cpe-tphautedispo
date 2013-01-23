@@ -11,7 +11,9 @@ public class DatastoreToolbox {
 	
 	public DatastoreToolbox()
 	{
+		System.out.println("Entering DatastoreToolbox constructor");
 		datastore = DatastoreServiceFactory.getDatastoreService();
+		
 	}
 	
 	public void putEntityToDatastore(Entity entity)

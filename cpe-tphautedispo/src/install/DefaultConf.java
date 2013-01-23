@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import objects.User;
 
 import modules.datastore.DatastoreUserToolbox;
+import modules.email.EmailUserToolbox;
 
 public class DefaultConf  extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -21,6 +22,8 @@ public class DefaultConf  extends HttpServlet {
 		System.out.println("DefaultConf: Entering doGet");
 		DatastoreUserToolbox dsut = new DatastoreUserToolbox();
 		dsut.putUserToDatastore(new User("admin", "istrator", 2000, "admin@souple-airlines.com", "admin", "password"));
+		EmailUserToolbox eut = new EmailUserToolbox();
+		eut.sendSubscriptionConfirmation(user);
 	}
 
 }
