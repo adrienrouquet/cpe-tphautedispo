@@ -7,12 +7,12 @@
 <%-- <jsp:useBean id="searchUserBean" class="bean.UserBean" scope="session" /> --%>
 <jsp:useBean id="flightRouterBean" class="bean.Router" scope="session" />
 
-<script type="text/javascript" src="script/websocketContact.js"></script>
+<!-- <script type="text/javascript" src="script/websocketContact.js"></script> -->
 <div id="container">
 	<header class="black" style="text-align:center;">
-		<form method="post" id="backForm" name="backForm" action="FlightsServlet">
+		<form method="post" id="backForm" name="backForm" action="flightsservlet">
 		<input type="hidden" name="action" value="<%=flightRouterBean.getAction()%>" />
-		<input type="button" class="imageButton back h50 w50 floatLeft" value="Back" onclick="setValue('backForm','action','backToDefaultView');submitForm('backForm');"/>	
+		<input type="button" class="imageButton back h50 w50 floatLeft" value="" onclick="setValue('backForm','action','backToDefaultView');submitForm('backForm');"/>	
 		</form>	
 		<h2>
 			Search flights

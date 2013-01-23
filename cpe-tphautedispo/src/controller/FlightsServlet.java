@@ -81,19 +81,20 @@ public class FlightsServlet extends HttpServlet {
 			case defaultView:
 			{
 				router.setAction("defaultView");
-				router.setUrl("selectAction.jsp");
-				rd = req.getRequestDispatcher("/content/flights/flights.jsp");
+				router.setUrl("searchFlights.jsp");
+
 			}break;
 				
 	      	default:
 	    	{
 	    		router.setAction("defaultView");
-				router.setUrl("selectAction.jsp");
-				rd = req.getRequestDispatcher("/content/flights/flights.jsp");
+				router.setUrl("searchFlights.jsp");
+				
 	    	}break;
 		}
 		
-//    	rd.forward(req, res);	
+		rd = req.getRequestDispatcher("/content/flights/flights.jsp");
+    	rd.forward(req, res);	
     }
 
 	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException

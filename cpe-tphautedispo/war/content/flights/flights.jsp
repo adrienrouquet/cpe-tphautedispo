@@ -22,7 +22,7 @@
 		if( flightsRouterBean.getUrl() != "")  
 		{
 	%>  
-		<jsp:include page="/content/flights/<%= flightsRouterBean.getUrl() %>" />
+		<jsp:include page="<%= flightsRouterBean.getUrl() %>" />
 	<% 
 		}
 	%>
