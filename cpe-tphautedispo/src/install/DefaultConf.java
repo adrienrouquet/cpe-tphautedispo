@@ -1,12 +1,16 @@
 package install;
 
+import java.util.Date;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import objects.Flight;
 import objects.User;
 
+import modules.datastore.DatastoreFlightToolbox;
 import modules.datastore.DatastoreUserToolbox;
 import modules.email.EmailUserToolbox;
 
@@ -27,6 +31,11 @@ public class DefaultConf  extends HttpServlet {
 		dsut.putUserToDatastore(new User("adrien", "rouquet", 1987, "adrien.rouquet@gmail.com","adrien","rouquet"));
 		dsut.putUserToDatastore(new User("henri", "lahoud", 1987, "lahoud.henri@gmail.com","henri","henri"));
 		dsut.putUserToDatastore(admin);
+		
+		DatastoreFlightToolbox dftb = new DatastoreFlightToolbox();
+		dftb.putFlightToDatastore(new Flight("12", "Lyon", new Date(), "Lyon", new Date(), 12, 12000.12));
+		dftb.putFlightToDatastore(new Flight("13", "Paris", new Date(), "Store", new Date(), 12, 12000.12));
+		dftb.putFlightToDatastore(new Flight("14", "Los Angeles", new Date(), "Le Malzieu-Ville", new Date(), 12, 12000.12));
 		
 		EmailUserToolbox eut = new EmailUserToolbox();
 		eut.setEmailFrom("ortola.loic@gmail.com");

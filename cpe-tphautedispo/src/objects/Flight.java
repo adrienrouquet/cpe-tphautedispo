@@ -5,6 +5,7 @@ import java.util.Date;
 
 import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.Key;
+import com.google.appengine.api.datastore.KeyFactory;
 
 public class Flight implements Serializable{
 	
@@ -29,8 +30,9 @@ public class Flight implements Serializable{
 		_departureTime		= (Date) entity.getProperty("departureTime");
 		_arrivalAirport 			= (String) entity.getProperty("arrivalAirport");
 		_arrivalTime				= (Date) entity.getProperty("arrivalTime");
-		_availableSeats			= (Integer) entity.getProperty("availableSeats");
+		_availableSeats	= Integer.parseInt((entity.getProperty("availableSeats").toString()));
 		_seatPrice					= (Double) entity.getProperty("seatPrice");
+		_key = entity.getKey();
 	}
 	
 	public Flight(String flightNumber, String departureAirport, Date departureTime, String arrivalAirport, Date arrivalTime, Integer availableSeats, Double seatPrice) {
@@ -106,6 +108,10 @@ public class Flight implements Serializable{
 	
 	public void setKey(Key key) {
 		this._key = key;
+	}
+	
+	public String getKeyAsString() {
+		return KeyFactory.keyToString(_key);
 	}
 	
 }
