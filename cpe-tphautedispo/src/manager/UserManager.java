@@ -35,6 +35,10 @@ public abstract class UserManager {
 		return _dsut.userExists(email, login);
 	}
 	
+	public static ArrayList<User> getUsers() {
+		return _dsut.getUsers();
+	}
+	
 //	public static ArrayList<User> getUsers()
 //	{
 //		return _dsut.getEntityFromCredentials();

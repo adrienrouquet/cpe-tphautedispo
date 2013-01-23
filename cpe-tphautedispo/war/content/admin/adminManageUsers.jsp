@@ -1,3 +1,4 @@
+<%@page import="manager.UserManager"%>
 <%@page import="java.util.ArrayList" %>
 <%@page import="objects.User" %>
 <jsp:useBean id="routerBean" class="bean.Router" scope="session" />
@@ -7,7 +8,7 @@
 <input type="hidden" name="action" value="manageUsers" />
 <input type="hidden" name="userKey" value="" />
 <%
-	ArrayList<User> users = userBean.getUsers();
+	ArrayList<User> users = UserManager.getUsers();
 	
 	if(users.size() > 0)
 	{
