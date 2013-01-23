@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import manager.UserManager;
+import modules.email.EmailUserToolbox;
 import objects.User;
 
 public class AccountServlet extends HttpServlet {
@@ -134,13 +135,13 @@ public class AccountServlet extends HttpServlet {
 					Integer yearOfBirth	= Integer.parseInt(req.getParameter("yearOfBirth").trim().toLowerCase());
 					String email		= req.getParameter("email").trim().toLowerCase();
 					String login 		= req.getParameter("login").trim().toLowerCase();
-					String password 	= req.getParameter("password").trim();
+					//String password 	= req.getParameter("password").trim();
 					
 					String errors 		= UserManager.userExists(email,login);
 					
 					if(errors.equals(""))
 					{
-						UserManager.addUser(firstName, lastName, yearOfBirth, email, login, password);
+						UserManager.addUser(firstName, lastName, yearOfBirth, email, login, null);					
 						router.setUrl("accountLogin.jsp?valid=subscribe");
 					}
 					else

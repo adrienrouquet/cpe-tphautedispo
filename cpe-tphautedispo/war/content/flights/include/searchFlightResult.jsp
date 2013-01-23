@@ -13,17 +13,16 @@
 <form method="post" id="ChooseFlightForm" name="ChooseFlightForm" action="flightsservlet">
 	
 	<%
-		ArrayList<Flight> flights = null;
+		ArrayList flights = null;
 		
 			//On remplit le champ "flightNumber" avec la "searchString" pour effectuer une recherche
 			flights = FlightManager.getFlights();
 			
-			if (flights != null)
+			if(flights.size() > 0)
 			{
-				if(flights.size() > 0)
+				for(Object obj : flights)
 				{
-					for(Flight flight : flights)
-					{
+					Flight flight = (Flight) obj;
 	%>
 
 					<div id="contactWrapper<%= flight.getKeyAsString()%>" class="contactWrapperNoHover" >
@@ -37,9 +36,11 @@
 					</div>
 
 	<%
-					}
 				}
-			
+			}
+			else
+			{
+				out.print("No flight matches your search");
 			}
 	%>
 </form>

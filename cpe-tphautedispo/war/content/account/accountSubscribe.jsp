@@ -25,14 +25,6 @@
 				login: {
 					required: true,
 					minlength: 4
-				},
-				password: {
-					required: true,
-					minlength: 4,
-				},
-				confirmPassword: {
-					required: true,
-					equalTo: "#password"
 				}
 			}
 		})
@@ -81,9 +73,8 @@
 			<%
 			}
 			%>
-			<input type="password" id="password" name="password" placeholder="Enter password"/>
-			<input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm password"/>
 			<br />
+			Your password will be emailed to you
 			<br />
 			<input type="submit" class="button" value="Create account" />
 			<br /><a href="accountservlet"> Back to Login </a>
