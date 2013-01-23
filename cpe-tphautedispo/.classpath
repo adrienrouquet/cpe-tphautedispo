@@ -2,6 +2,15 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="com.google.appengine.eclipse.core.GAE_CONTAINER"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jdk1.7.0_10"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7">
+		<attributes>
+			<attribute name="owner.project.facets" value="java"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/debian/.eclipse/org.eclipse.platform_4.2.0_1473617060/plugins/com.google.appengine.eclipse.sdkbundle_1.7.4/appengine-java-sdk-1.7.4/lib/shared/servlet-api.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="file:/home/debian/.eclipse/org.eclipse.platform_4.2.0_1473617060/plugins/com.google.appengine.eclipse.sdkbundle_1.7.4/appengine-java-sdk-1.7.4/docs/javadoc/"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="output" path="war/WEB-INF/classes"/>
 </classpath>
