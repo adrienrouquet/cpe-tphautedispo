@@ -1,5 +1,7 @@
 package modules.datastore;
 
+import java.util.ArrayList;
+
 import objects.User;
 
 import com.google.appengine.api.datastore.Entity;
@@ -27,10 +29,12 @@ public class DatastoreUserToolbox extends DatastoreToolbox{
 		}
 		return null;
 	}
+	
 	public User getUserFromKey(Key key)
 	{
 		return new User(getEntityFromKey(key));
 	}
+	
 	public Boolean checkCredentials(String login, String password)
 	{
 		boolean valid = false;
@@ -69,6 +73,21 @@ public class DatastoreUserToolbox extends DatastoreToolbox{
 		
 		return exists;
 	}
+	
+	public ArrayList<User> getUsers()
+	{
+		ArrayList<User> users = new ArrayList<User>();
+		
+		FetchOptions fetchoptions = FetchOptions.Builder.withLimit(Integer.MAX_VALUE);
+		
+		Query q = new Query("User");
+		PreparedQuery pq = datastore.prepare(q);
+		for(Entity rs : pq.asIterable()){
+			users.add(new User(rs));
+		}
+		return users;		
+	}
+	
 	
 	public void putUserToDatastore(User user)
 	{
