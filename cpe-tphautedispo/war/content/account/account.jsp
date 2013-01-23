@@ -9,7 +9,7 @@
 		<script type="text/javascript" src="script/jquery.validate.min.js"></script>
 		<script type="text/javascript" src="script/jquery.defaultvalue.js"></script>
 		<title>Souple Airlines</title>
-</head>
+	</head>
 	<body>
 	<% 
 		if( routerBean.getUrl() != "")  

@@ -93,7 +93,7 @@ public class AccountServlet extends HttpServlet {
 						session.setAttribute("routerBean", new bean.Router());
 						System.out.println("AccountServlet: UserId " + userBean.getKey() + " is now connected");
 						
-						res.sendRedirect("FlightsServlet");
+						res.sendRedirect("flightsservlet");
 						return;
 					}
 					else

@@ -27,11 +27,11 @@ public class User implements Serializable{
 	{
 		_firstName 		= (String) entity.getProperty("firstName");
 		_lastName 		= (String) entity.getProperty("lastName");
-		_yearOfBirth 	= (Integer) entity.getProperty("yearOfBirth");
+		_yearOfBirth 	= Integer.parseInt(entity.getProperty("yearOfBirth").toString());
 		_email 				= (String) entity.getProperty("email");
 		_login				= (String) entity.getProperty("login");
 		_password 		= (String) entity.getProperty("password");
-		_rightTypeId		= (Integer) entity.getProperty("rightTypeId");
+		_rightTypeId		= Integer.parseInt(entity.getProperty("rightTypeId").toString());
 		_key					= entity.getKey();
 		_isConnected	= false;
 	}

@@ -86,7 +86,7 @@
 			<br />
 			<br />
 			<input type="submit" class="button" value="Create account" />
-			<br /><a href="AccountServlet"> Back to Login </a>
+			<br /><a href="accountservlet"> Back to Login </a>
 
 		</form>
 	</section>
