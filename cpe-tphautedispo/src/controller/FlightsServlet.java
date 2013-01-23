@@ -19,6 +19,12 @@ public class FlightsServlet extends HttpServlet {
         super();        
     }
     
+    private enum Action
+	{
+		defaultView,
+		backToDefaultView
+	}
+    
     private void routing(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException
     {
     	HttpSession session 	= req.getSession(true);
@@ -36,13 +42,13 @@ public class FlightsServlet extends HttpServlet {
 		if (!userBean.getUser().isConnected())
 			userBean.getUser().connect();
 		
-		//On recupere le searchBean de la session    
-    	bean.UserBean searchBean	= (bean.UserBean) session.getAttribute("searchBean");		
-		if(searchBean == null || searchBean.getUser().getKey() == null)
-		{
-			System.out.println("Warning: searchBean is null in ChatServlet");
-			searchBean = new
-		}
+//		//On recupere le searchBean de la session    
+//    	bean.UserBean searchBean	= (bean.UserBean) session.getAttribute("searchBean");		
+//		if(searchBean == null || searchBean.getUser().getKey() == null)
+//		{
+//			System.out.println("Warning: searchBean is null in ChatServlet");
+//			searchBean = new
+//		}
 		
 		//On recupere le flightsRouterBean de la session    	
     	bean.Router router 		= (bean.Router) session.getAttribute("flightsRouterBean");
@@ -54,7 +60,7 @@ public class FlightsServlet extends HttpServlet {
     	}
     	router.setAction(req.getParameter("action"));
     	
-    	Action actionenum = Action.login;
+    	Action actionenum = Action.defaultView;
 		String actionstring = req.getParameter("action");
 		
 		for(Action a : Action.values())
@@ -65,13 +71,25 @@ public class FlightsServlet extends HttpServlet {
 				break;
 			}
 		}
-		switch(router.getAction())
+		switch(actionenum)
 		{
+			case backToDefaultView:
+			{
+				
+			}break;
+			
+			case defaultView:
+			{
+				router.setAction("defaultView");
+				router.setUrl("selectAction.jsp");
+				rd = req.getRequestDispatcher("content/flights/flights.jsp");
+			}break;
+				
 	      	default:
 	    	{
-//	    		router.setAction("DefaultView");
-//	    		router.setUrl("contactWindow.jsp");
-//	    		rd = req.getRequestDispatcher("content/chat/chat.jsp");
+	    		router.setAction("defaultView");
+				router.setUrl("selectAction.jsp");
+				rd = req.getRequestDispatcher("content/flights/flights.jsp");
 	    	}break;
 		}
 		
@@ -91,8 +109,4 @@ public class FlightsServlet extends HttpServlet {
 		routing(req, res);
 	}
 	
-	private enum Action
-	{
-		defaultView
-	}
 }
