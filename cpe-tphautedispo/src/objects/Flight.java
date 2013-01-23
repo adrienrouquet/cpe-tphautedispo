@@ -2,6 +2,7 @@ package objects;
 
 import java.io.Serializable;
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -48,6 +49,24 @@ public class Flight implements Serializable{
 		_seatPrice					= seatPrice;
 	}
 	
+	public Flight(String departureAirport, String departureTime,
+			String arrivalAirport, String arrivalTime, String availableSeats,
+			String seatPrice) {
+
+		
+		try {
+			_departureTime = new SimpleDateFormat("yyyy/mm/dd HH:MM").parse(departureTime);
+			_arrivalTime = new SimpleDateFormat("yyyy/mm/dd HH:MM").parse(departureTime);
+		} catch (ParseException e) {
+			System.err.println("ERROR IN CONSTRUCT: " + e.getMessage());
+		}
+		_departureAirport = departureAirport;
+		_arrivalAirport = arrivalAirport;
+		_availableSeats = Integer.parseInt(availableSeats);
+		_seatPrice = Double.parseDouble(seatPrice);
+		_flightNumber = objects.RandomGenerator.generateRandomPassword(10);
+	}
+
 		public String getFlightNumber() {
 		return _flightNumber;
 	}
