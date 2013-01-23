@@ -4,6 +4,7 @@ import objects.User;
 
 import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.EntityNotFoundException;
+import com.google.appengine.api.datastore.FetchOptions;
 import com.google.appengine.api.datastore.Key;
 import com.google.appengine.api.datastore.PreparedQuery;
 import com.google.appengine.api.datastore.Query;
@@ -44,12 +45,14 @@ public class DatastoreUserToolbox extends DatastoreToolbox{
 	public String userExists(String email, String login)
 	{
 		String exists = "";
-				
+		
+		FetchOptions fetchoptions = FetchOptions.Builder.withLimit(Integer.MAX_VALUE);
+		
 		Query qemail = new Query("User");
 		qemail.setFilter(new Query.FilterPredicate("email", Query.FilterOperator.EQUAL,email));
 		PreparedQuery pqemail = datastore.prepare(qemail);
 		
-		if (pqemail.countEntities(null) > 0)
+		if (pqemail.countEntities(fetchoptions) > 0)
 		{
 			exists += "emailExists";
 		}
@@ -59,7 +62,7 @@ public class DatastoreUserToolbox extends DatastoreToolbox{
 		
 		PreparedQuery pqlogin = datastore.prepare(qlogin);
 		
-		if (pqlogin.countEntities(null) > 0)
+		if (pqlogin.countEntities(fetchoptions) > 0)
 		{
 			exists += "loginExists";
 		}
