@@ -1,19 +1,6 @@
 $(document).ready(function() {
 
 
-	function scrollDown() {
-		$(".scroll").animate({
-			scrollTop: $(".scroll").prop("scrollHeight")
-			}, 0);
-	}
-	
-	function init() {
-		scrollDown();
-		$("#messageForm").bind("DOMNodeInserted", function() {
-			scrollDown();
-		});
-	}
-	
 	function submitForm(pForm)
 	{
 		document.forms[pForm].submit();
@@ -29,7 +16,7 @@ $(document).ready(function() {
 	}
 	
 	(function() {
-		init();
+//		init();
 		initGlobal();
 	})();
 

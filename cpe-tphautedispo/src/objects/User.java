@@ -117,7 +117,7 @@ public class User implements Serializable{
 		this._password = password;
 	}
 	
-	public String getCreationDateFormatted() {
+	public String getCreationDateFormated() {
 		return DateFormat.getDateInstance().format(_creationDate);
 	}
 	
@@ -129,7 +129,6 @@ public class User implements Serializable{
 		this._creationDate = creationDate;
 	}
 	
-	
 	public Integer getRightTypeId() {
 		return _rightTypeId;
 	}
@@ -138,6 +137,9 @@ public class User implements Serializable{
 		this._rightTypeId = rightTypeId;
 	}
 	
+	public String getKeyAsString() {
+		return _key.toString();
+	}
 	public Key getKey() {
 		return _key;
 	}

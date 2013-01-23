@@ -4,8 +4,6 @@ import java.io.IOException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.*;
-
-import manager.UserManager;
 import objects.User;
 
 public class AdminServlet extends HttpServlet {
@@ -38,15 +36,18 @@ public class AdminServlet extends HttpServlet {
 		bean.UserBean userBean = (bean.UserBean) session.getAttribute("userBean");
 		
 		if (userBean == null || userBean.getUser() == null || !userBean.getUser().isAdmin()) {
-			res.sendRedirect("AccountServlet");
+			res.sendRedirect("accountservlet");
 		}
 		
 		bean.Router router = (bean.Router) session.getAttribute("adminRouterBean");
+		if (router == null) {
+			router = new bean.Router();
+			session.setAttribute("adminRouterBean", router);
+		}
 		
 		Action actionenum = Action.view;
-		
 		String actionstring = req.getParameter("action");
-		
+
 		for(Action a : Action.values())
 		{
 			if (a.toString().equalsIgnoreCase(actionstring))
@@ -59,10 +60,13 @@ public class AdminServlet extends HttpServlet {
 		switch(actionenum)
 		{
 			case manageFlights:
-				router.setUrl("manageFlight.jsp");
+				router.setUrl("adminManageFlights.jsp");
 				break;
 			case manageUsers:
-				router.setUrl("manageUser.jsp");
+				router.setUrl("adminManageUsers.jsp");
+				break;
+			case view:
+				router.setUrl("adminDefaultView.jsp");
 				break;
 			default:
 				router.setUrl("adminDefaultView.jsp");
@@ -88,6 +92,5 @@ public class AdminServlet extends HttpServlet {
 		bean.UserBean userBean = new bean.UserBean();
 		userBean.setUser(user);
 		session.setAttribute("userBean", userBean);
-		session.setAttribute("adminRouterBean", new bean.Router());
 	}
 }
