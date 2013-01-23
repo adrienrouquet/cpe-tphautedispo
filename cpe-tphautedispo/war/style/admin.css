@@ -1,9 +1,5 @@
 @CHARSET "UTF-8";
 
-.userSection{
-	bottom: 84px;
-}
-
 .userName{
 	display: inline-block;
 	text-size: 1.2em;
@@ -47,6 +43,59 @@
 }
 
 .userWrapperNoHover:nth-child(odd){
+	background-color: rgba(255,255,255,0.5);
+	filter: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr='#7FFFFFFF', EndColorStr='#7FFFFFFF');
+}
+
+.flightNumber{
+	display: inline-block;
+	text-size: 1.2em;
+	font-weight: bold;
+}
+
+.flightInfo{
+/* 	display:inline-block; */
+	text-size: 1.2em;
+}
+
+.flightInfo span{
+	text-size: 1.2em;
+	font-weight: bold;
+}
+
+.flightWrapper{
+	color: rgb(20,20,20);	
+	text-align: left;
+	border: 2px;
+	border-style: groove;	
+	background-color: rgba(200,200,200,0.5);
+	filter: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr='#7FAAAAAA', EndColorStr='#7FAAAAAA');
+	overflow: auto;
+	white-space:nowrap;
+}
+
+.flightWrapper:nth-child(odd){
+	background-color: rgba(255,255,255,0.5);
+	filter: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr='#7FFFFFFF', EndColorStr='#7FFFFFFF');
+}
+
+.flightWrapper:hover *{
+	cursor: pointer;
+	background-color: rgba(160,180,200,0.7);
+	filter: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr='#7FAAAAAA', EndColorStr='#7FAAAAAA');
+}
+
+.flightWrapperNoHover{
+	color: rgb(20,20,20);
+	min-height: 40px;
+	text-align: left;
+	border: 2px;
+	border-style: groove;	
+	background-color: rgba(200,200,200,0.5);
+	filter: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr='#7FAAAAAA', EndColorStr='#7FAAAAAA');
+}
+
+.flightWrapperNoHover:nth-child(odd){
 	background-color: rgba(255,255,255,0.5);
 	filter: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr='#7FFFFFFF', EndColorStr='#7FFFFFFF');
 }

@@ -17,14 +17,17 @@
 			Flight flight = (Flight) obj;
 			String onClickDeleteContent = "setValue('mainForm','action','deleteFlight');setValue('mainForm','userKey','" + flight.getKeyAsString() + "');submitForm('mainForm');";
 %>
-<div class="userWrapper">
-	<div class="userName"><%= flight.getFlightNumber() %></div>
-	<div class="userCreationDate"><%= flight.getDepartureAirport() %></div>
-	<div class="userCreationDate"><%= flight.getDepartureTime() %></div>
-	<div class="userCreationDate"><%= flight.getArrivalAirport() %></div>
-	<div class="userCreationDate"><%= flight.getArrivalTime() %></div>
-	<div class="userCreationDate"><%= flight.getAvailableSeats() %></div>
-	<div class="userCreationDate"><%= flight.getSeatPrice() %></div>
+<div class="flightWrapperNoHover">
+	<div class="flightNumber"><%= flight.getFlightNumber() %></div>
+	<div class="flightInfo">
+		<span>Departure: </span><%= flight.getDepartureAirport() %> @ <%= flight.getDepartureTimeFormated() %>
+	</div>
+	<div class="flightInfo">
+		<span>Arrival: </span><%= flight.getArrivalAirport() %> @ <%= flight.getArrivalTimeFormated() %>
+	</div>
+	<div class="flightInfo">
+		<span>Price: </span><%= flight.getSeatPrice() %><span> Seats available: </span><%= flight.getAvailableSeats() %>
+	</div>
 	<input type="button" class="imageButton delete floatRight w40 h40" onclick="<%=onClickDeleteContent%>"/>
 </div>
 <%

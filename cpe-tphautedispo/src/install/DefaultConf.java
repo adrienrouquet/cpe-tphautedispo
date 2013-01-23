@@ -25,6 +25,17 @@ public class DefaultConf  extends HttpServlet {
 	{
 		System.out.println("DefaultConf: Entering doGet");
 		DatastoreUserToolbox dsut = new DatastoreUserToolbox();
+		DatastoreFlightToolbox dsft = new DatastoreFlightToolbox();
+		
+		for (User user : dsut.getUsers()) {
+			System.out.println("DEL USER: " + user.getName());
+			dsut.removeEntityFromDatastore(user.getKey());
+		}
+		for (Flight flight : dsft.getFlights()) {
+			System.out.println("DEL FLIGHT: " + flight.getFlightNumber());
+			dsut.removeEntityFromDatastore(flight.getKey());
+		}
+		
 		User admin = new User("admin", "istrator", 2000, "admin@souple-airlines.com", "admin", "password");
 		admin.setRightTypeId(1);
 		dsut.putUserToDatastore(new User("loic", "ortola", 1989, "ortola.loic@gmail.com","loic","loic"));
@@ -32,10 +43,9 @@ public class DefaultConf  extends HttpServlet {
 		dsut.putUserToDatastore(new User("henri", "lahoud", 1987, "lahoud.henri@gmail.com","henri","henri"));
 		dsut.putUserToDatastore(admin);
 		
-		DatastoreFlightToolbox dftb = new DatastoreFlightToolbox();
-		dftb.putFlightToDatastore(new Flight("12", "Lyon", new Date(), "Lyon", new Date(), 12, 12000.12));
-		dftb.putFlightToDatastore(new Flight("13", "Paris", new Date(), "Store", new Date(), 12, 12000.12));
-		dftb.putFlightToDatastore(new Flight("14", "Los Angeles", new Date(), "Le Malzieu-Ville", new Date(), 12, 12000.12));
+		dsft.putFlightToDatastore(new Flight("12", "Lyon", new Date(), "Lyon", new Date(), 12, 12000.12));
+		dsft.putFlightToDatastore(new Flight("13", "Paris", new Date(), "Store", new Date(), 12, 12000.12));
+		dsft.putFlightToDatastore(new Flight("14", "Los Angeles", new Date(), "Le Malzieu-Ville", new Date(), 12, 12000.12));
 		
 		EmailUserToolbox eut = new EmailUserToolbox();
 		eut.setEmailFrom("ortola.loic@gmail.com");

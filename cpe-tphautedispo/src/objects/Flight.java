@@ -1,6 +1,7 @@
 package objects;
 
 import java.io.Serializable;
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -115,4 +116,11 @@ public class Flight implements Serializable{
 		return KeyFactory.keyToString(_key);
 	}
 	
+	public String getDepartureTimeFormated() {
+		return DateFormat.getDateInstance().format(_departureTime);
+	}
+	
+	public String getArrivalTimeFormated() {
+		return DateFormat.getDateInstance().format(_arrivalTime);
+	}
 }
