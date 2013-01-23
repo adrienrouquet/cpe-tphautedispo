@@ -8,13 +8,14 @@
 <input type="hidden" name="action" value="manageUsers" />
 <input type="hidden" name="userKey" value="" />
 <%
-	ArrayList<Flight> flights = FlightManager.getFlights();
+	ArrayList flights = FlightManager.getFlights();
 	
 	if(flights.size() > 0)
 	{
-		for(Flight flight : flights)
+		for(Object obj : flights)
 		{
-			String onClickDeleteContent = "setValue('mainForm','action','deleteFlight');setValue('mainForm','flightKey','" + flight.getKeyAsString() + "');submitForm('mainForm');";
+			Flight flight = (Flight) obj;
+			String onClickDeleteContent = "setValue('mainForm','action','deleteFlight');setValue('mainForm','userKey','" + flight.getKeyAsString() + "');submitForm('mainForm');";
 %>
 <div class="flightWrapperNoHover">
 	<div class="flightNumber"><%= flight.getFlightNumber() %></div>

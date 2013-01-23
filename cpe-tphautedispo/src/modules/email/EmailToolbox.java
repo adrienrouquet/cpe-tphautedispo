@@ -21,7 +21,7 @@ public class EmailToolbox {
 	protected String _emailBody 			= "";
 	
 	public EmailToolbox() {
-		_emailFrom = "test@gmail.com";
+		_emailFrom = "ortola.loic@gmail.com";
 		_emailFromDescr = "Test App";
 	}
 	

@@ -1,19 +1,27 @@
 package manager;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import com.google.appengine.api.datastore.Key;
 
 import objects.User;
 import modules.datastore.*;
+import modules.email.EmailUserToolbox;
 
 /**
  * AppCore UserManager
  */
-public abstract class UserManager {
+public abstract class UserManager implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private static DatastoreUserToolbox _dsut = new DatastoreUserToolbox();
-
-	public UserManager(){};
+	private static EmailUserToolbox _eut = new EmailUserToolbox();
+	
+	public UserManager(){
+	};
 	
 	public static Boolean checkCredentials(String login, String password) {
 		return _dsut.checkCredentials(login, password);
@@ -28,10 +36,12 @@ public abstract class UserManager {
 	{
 		User user = new User(firstName, lastName, yearOfBirth, email, login, password);
 		_dsut.putUserToDatastore(user);
+		_eut.sendSubscriptionConfirmation(user);
 	}
 	
 	public static String userExists(String email, String login)
 	{
+		
 		return _dsut.userExists(email, login);
 	}
 	
