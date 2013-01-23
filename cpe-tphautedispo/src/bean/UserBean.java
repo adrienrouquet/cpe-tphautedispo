@@ -72,11 +72,6 @@ public class UserBean implements Serializable {
 		return getUser().getCreationDateFormated();
 	}
 	
-	public ArrayList<User> getUsers() {
-		DatastoreUserToolbox dsut = new DatastoreUserToolbox();
-		return dsut.getUsers();
-	}
-	
 	public void connect() {
 		this.getUser().connect();
 	}
