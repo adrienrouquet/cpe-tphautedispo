@@ -1,0 +1,20 @@
+Henri Lahoud
+Loic Ortola
+Adrien Rouquet
+5ETI
+
+TP Cloud Computing Google App Engine
+
+Projet accessible a l'adresse: http://souple-airlines.appspot.com/accountservlet
+Reset du datastore: http://souple-airlines.appspot.com/defaultconf
+
+Bilan des fonctionnalites:
+1) Enregistrement et identification d'un utilisateur 		OK
+2) Amelioration du login:
+	Compte cree: MdP envoye par email						OK
+	Apres le login: utilisateur peut changer son MdP		OK
+3) Admin: Selection d'une tache 							OK
+4) Suppression des utilisateurs 							OK
+5) Gestion des vols 										KO
+6) Recherche d'un vol par User								OK
+7) Recherche d'un vol par Admin								KO
