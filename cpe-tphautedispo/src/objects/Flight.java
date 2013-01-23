@@ -1,10 +1,10 @@
 package objects;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.Key;
-import com.google.appengine.repackaged.com.google.api.client.util.DateTime;
 
 public class Flight implements Serializable{
 	
@@ -12,9 +12,9 @@ public class Flight implements Serializable{
 	private Key _key								= null;
 	private String _flightNumber			= "";
 	private String _departureAirport		= "";
-	private DateTime _departureTime	= null;
+	private Date _departureTime	= null;
 	private String _arrivalAirport			= "";
-	private DateTime _arrivalTime			= null;
+	private Date _arrivalTime			= null;
 	private Integer _availableSeats		= 0;
 	private Double _seatPrice				= 0.0;
 	
@@ -26,125 +26,86 @@ public class Flight implements Serializable{
 	{
 		_flightNumber			= (String) entity.getProperty("flightNumber");
 		_departureAirport 	= (String) entity.getProperty("departureAirport");
-		_departureTime		= (DateTime) entity.getProperty("departureTime");
+		_departureTime		= (Date) entity.getProperty("departureTime");
 		_arrivalAirport 			= (String) entity.getProperty("arrivalAirport");
-		_arrivalTime				= (DateTime) entity.getProperty("arrivalTime");
+		_arrivalTime				= (Date) entity.getProperty("arrivalTime");
 		_availableSeats			= (Integer) entity.getProperty("availableSeats");
 		_seatPrice					= (Double) entity.getProperty("seatPrice");
 	}
 	
-	public Flight(String flightNumber, String departureAirport, DateTime departureTime, String arrivalAirport, DateTime arrivalTime, Integer availableSeats, Double seatPrice) {
+	public Flight(String flightNumber, String departureAirport, Date departureTime, String arrivalAirport, Date arrivalTime, Integer availableSeats, Double seatPrice) {
 
-		_flightNumber			= (String) entity.getProperty("flightNumber");
-		_departureAirport 	= (String) entity.getProperty("departureAirport");
-		_departureTime		= (DateTime) entity.getProperty("departureTime");
-		_arrivalAirport 			= (String) entity.getProperty("arrivalAirport");
-		_arrivalTime				= (DateTime) entity.getProperty("arrivalTime");
-		_availableSeats			= (Integer) entity.getProperty("availableSeats");
-		_seatPrice					= (Double) entity.getProperty("seatPrice");
+		_flightNumber			= flightNumber;
+		_departureAirport 	= departureAirport;
+		_departureTime		= departureTime;
+		_arrivalAirport 			= arrivalAirport;
+		_arrivalTime				= arrivalTime;
+		_availableSeats			= availableSeats;
+		_seatPrice					= seatPrice;
 	}
 	
-	public Flight(String firstName, String lastName, Integer yearOfBirth, String email, String login) {
-		
-		_firstName 		= firstName;
-		_lastName 		= lastName;
-		_yearOfBirth 	= yearOfBirth;
-		_email 				= email;
-		_login				= login;
-		_rightTypeId		= 3;
-		_isConnected	= false;
-	}
-	
-	
-	
-	public String getName() {
-		return _firstName + " " + _lastName;
-	}
-	
-	public String getFirstName() {
-		return _firstName;
+		public String getFlightNumber() {
+		return _flightNumber;
 	}
 
-	public void setFirstName(String firstName) {
-		this._firstName = firstName;
+	public void setFlightNumber(String _flightNumber) {
+		this._flightNumber = _flightNumber;
 	}
 
-	public String getLastName() {
-		return _lastName;
+	public String getDepartureAirport() {
+		return _departureAirport;
 	}
 
-	public void setLastName(String lastName) {
-		this._lastName = lastName;
+	public void setDepartureAirport(String _departureAirport) {
+		this._departureAirport = _departureAirport;
 	}
 
-	public Integer getYearOfBirth() {
-		return _yearOfBirth;
+	public Date getDepartureTime() {
+		return _departureTime;
 	}
 
-	public void setYearOfBirth(Integer yearOfBirth) {
-		this._yearOfBirth = yearOfBirth;
+	public void setDepartureTime(Date _departureTime) {
+		this._departureTime = _departureTime;
 	}
 
-	public String getEmail() {
-		return _email;
+	public String getArrivalAirport() {
+		return _arrivalAirport;
 	}
 
-	public void setEmail(String email) {
-		this._email = email;
+	public void setArrivalAirport(String _arrivalAirport) {
+		this._arrivalAirport = _arrivalAirport;
 	}
 
-	public String getLogin() {
-		return _login;
+	public Date getArrivalTime() {
+		return _arrivalTime;
 	}
 
-	public void setLogin(String login) {
-		this._login = login;
+	public void setArrivalTime(Date _arrivalTime) {
+		this._arrivalTime = _arrivalTime;
 	}
 
-	public String getPassword() {
-		return _password;
+	public Integer getAvailableSeats() {
+		return _availableSeats;
 	}
 
-	public void setPassword(String password) {
-		this._password = password;
-	}
-	
-	public Integer getRightTypeId() {
-		return _rightTypeId;
+	public void setAvailableSeats(Integer _availableSeats) {
+		this._availableSeats = _availableSeats;
 	}
 
-	public void setRightTypeId(Integer rightTypeId) {
-		this._rightTypeId = rightTypeId;
+	public Double getSeatPrice() {
+		return _seatPrice;
 	}
-	
-	public Key getKey() {
+
+	public void setSeatPrice(Double _seatPrice) {
+		this._seatPrice = _seatPrice;
+	}
+
+		public Key getKey() {
 		return _key;
 	}
 	
 	public void setKey(Key key) {
 		this._key = key;
-	}
-	
-	public void connect()
-	{
-		this._isConnected = true;
-	}
-	
-	public void disconnect()
-	{
-		this._isConnected = false;
-	}
-
-	public Boolean isConnected()
-	{
-		return _isConnected;
-	}
-	
-	public Boolean isAdmin()
-	{
-		if(_rightTypeId == 1)
-			return true;
-		return false;
 	}
 	
 }

@@ -1,9 +1,8 @@
 package modules.datastore;
 
-import objects.User;
+import objects.Flight;
 
 import com.google.appengine.api.datastore.Entity;
-import com.google.appengine.api.datastore.EntityNotFoundException;
 import com.google.appengine.api.datastore.Key;
 import com.google.appengine.api.datastore.PreparedQuery;
 import com.google.appengine.api.datastore.Query;
@@ -13,7 +12,7 @@ public class DatastoreFlightToolbox extends DatastoreToolbox{
 	public DatastoreFlightToolbox(){
 		System.out.println("Entering DatastoreFlightToolbox constructor");
 	}
-	public User getFlightFromFlightNumber(String flightNumber){
+	public Flight getFlightFromFlightNumber(String flightNumber){
 		Query q = new Query("Flight");
 		q.setFilter(new Query.FilterPredicate("flightNumber", Query.FilterOperator.EQUAL,flightNumber));
 		
@@ -28,33 +27,23 @@ public class DatastoreFlightToolbox extends DatastoreToolbox{
 	{
 		return new Flight(getEntityFromKey(key));
 	}
-	public boolean checkCredentials(String login, String password)
-	{
-		boolean valid = false;
-		
-		if (getUserFromCredentials(login, password) != null)
-		{
-			valid = true;
-		}		
-		return valid;
-	}
 	
-	public void putUserToDatastore(User user)
+	public void putFlightToDatastore(Flight flight)
 	{
-		Entity userEntity = null;
+		Entity flightEntity = null;
 		
-		if(user.getKey() != null)
-			userEntity = new Entity("User",user.getKey());
+		if(flight.getKey() != null)
+			flightEntity = new Entity("Flight",flight.getKey());
 		else
-			userEntity = new Entity("User");
-		userEntity.setProperty("firstName", user.getFirstName());
-		userEntity.setProperty("lastName", user.getLastName());
-		userEntity.setProperty("yearOfBirth", user.getYearOfBirth());
-		userEntity.setProperty("email", user.getEmail());
-		userEntity.setProperty("login", user.getLogin());
-		userEntity.setProperty("password", user.getPassword());
-		userEntity.setProperty("rightTypeId", user.getRightTypeId());
-		datastore.put(userEntity);
+			flightEntity = new Entity("Flight");
+		flightEntity.setProperty("flightNumber", flight.getFlightNumber());
+		flightEntity.setProperty("departureAirport", flight.getDepartureAirport());
+		flightEntity.setProperty("departureTime", flight.getDepartureTime());
+		flightEntity.setProperty("arrivalAirport", flight.getArrivalAirport());
+		flightEntity.setProperty("arrivalTime", flight.getArrivalTime());
+		flightEntity.setProperty("availableSeats", flight.getAvailableSeats());
+		flightEntity.setProperty("seatPrice", flight.getSeatPrice());
+		datastore.put(flightEntity);
 	}
 
 }
