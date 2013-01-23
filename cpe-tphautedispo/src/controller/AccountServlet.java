@@ -40,13 +40,13 @@ public class AccountServlet extends HttpServlet {
 		HttpSession session 	= req.getSession(true);
 		RequestDispatcher rd 	= null;
 		
-		//On recupere le accountRouterBean de la session
-		bean.Router ar 	= (bean.Router) session.getAttribute("accountRouterBean");
-		if(ar == null)
+		//On recupere le routerBean de la session
+		bean.Router router 	= (bean.Router) session.getAttribute("routerBean");
+		if(router == null)
 		{
-			System.out.println("Warning: accountRouterBean is null in AccountServlet");
-    		ar = new bean.Router();
-			session.setAttribute("accountRouterBean", ar);
+			System.out.println("Warning: routerBean is null in AccountServlet");
+    		router = new bean.Router();
+			session.setAttribute("routerBean", router);
 		}
 		
 		//On recupere le UserBean de la session
@@ -89,7 +89,7 @@ public class AccountServlet extends HttpServlet {
 					{
 						System.out.println("AccountServlet: Wrong credentials");
 						//Par defaut, on forward sur accountLogin.jsp
-						ar.setUrl("accountLogin.jsp");
+						router.setUrl("accountLogin.jsp");
 						rd = req.getRequestDispatcher("content/account/account.jsp");
 						rd.forward(req, res);
 					}	
@@ -106,7 +106,7 @@ public class AccountServlet extends HttpServlet {
 //				}break;
 				case "subscribe":
 				{
-					ar.setUrl("accountSubscribe.jsp");
+					router.setUrl("accountSubscribe.jsp");
 					rd = req.getRequestDispatcher("content/account/account.jsp");
 					rd.forward(req, res);
 				}break;
@@ -127,7 +127,7 @@ public class AccountServlet extends HttpServlet {
 //					if(errors.equals(""))
 //					{
 						UserManager.addUser(firstName, lastName, yearOfBirth, email, login, password);
-						ar.setUrl("accountLogin.jsp?valid=subscribe");
+						router.setUrl("accountLogin.jsp?valid=subscribe");
 //					}
 //					else
 //					{
@@ -146,7 +146,7 @@ public class AccountServlet extends HttpServlet {
 		else
 		{
 			//Par defaut, on forward sur accountLogin.jsp
-			ar.setUrl("accountLogin.jsp");
+			router.setUrl("accountLogin.jsp");
 			rd = req.getRequestDispatcher("content/account/account.jsp");
 			rd.forward(req, res);
 		}
