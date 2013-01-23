@@ -1,11 +1,10 @@
 package modules.datastore;
 
 import java.util.ArrayList;
-
+import java.util.Date;
 import objects.User;
 
 import com.google.appengine.api.datastore.Entity;
-import com.google.appengine.api.datastore.EntityNotFoundException;
 import com.google.appengine.api.datastore.FetchOptions;
 import com.google.appengine.api.datastore.Key;
 import com.google.appengine.api.datastore.PreparedQuery;
@@ -104,6 +103,7 @@ public class DatastoreUserToolbox extends DatastoreToolbox{
 		userEntity.setProperty("login", user.getLogin());
 		userEntity.setProperty("password", user.getPassword());
 		userEntity.setProperty("rightTypeId", user.getRightTypeId());
+		userEntity.setProperty("creationDate", new Date());
 		datastore.put(userEntity);
 	}
 

@@ -23,7 +23,11 @@ public class DefaultConf  extends HttpServlet {
 		DatastoreUserToolbox dsut = new DatastoreUserToolbox();
 		User admin = new User("admin", "istrator", 2000, "admin@souple-airlines.com", "admin", "password");
 		admin.setRightTypeId(1);
+		dsut.putUserToDatastore(new User("loic", "ortola", 1989, "ortola.loic@gmail.com","loic","loic"));
+		dsut.putUserToDatastore(new User("adrien", "rouquet", 1987, "adrien.rouquet@gmail.com","adrien","rouquet"));
+		dsut.putUserToDatastore(new User("henri", "lahoud", 1987, "lahoud.henri@gmail.com","henri","henri"));
 		dsut.putUserToDatastore(admin);
+		
 		EmailUserToolbox eut = new EmailUserToolbox();
 		eut.setEmailFrom("ortola.loic@gmail.com");
 		eut.sendSubscriptionConfirmation(new User("admin", "istrator", 2000, "ortola.loic@gmail.com", "admin", "password"));

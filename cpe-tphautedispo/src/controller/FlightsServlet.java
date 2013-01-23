@@ -35,7 +35,7 @@ public class FlightsServlet extends HttpServlet {
 		if(userBean == null || userBean.getUser().getKey() == null)
 		{
 			System.out.println("Warning: userBean is null in ChatServlet");
-			res.sendRedirect("AccountServlet");
+			res.sendRedirect("accountservlet");
 			return;
 		}
     	
@@ -82,14 +82,14 @@ public class FlightsServlet extends HttpServlet {
 			{
 				router.setAction("defaultView");
 				router.setUrl("selectAction.jsp");
-				rd = req.getRequestDispatcher("content/flights/flights.jsp");
+				rd = req.getRequestDispatcher("/content/flights/flights.jsp");
 			}break;
 				
 	      	default:
 	    	{
 	    		router.setAction("defaultView");
 				router.setUrl("selectAction.jsp");
-				rd = req.getRequestDispatcher("content/flights/flights.jsp");
+				rd = req.getRequestDispatcher("/content/flights/flights.jsp");
 	    	}break;
 		}
 		
