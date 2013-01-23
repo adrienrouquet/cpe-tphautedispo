@@ -17,11 +17,18 @@
 	<div id="container">
 	<header>
 		<div style="float: left; display: block;">
-			<div>Souple Airlines</div>
-			<div>Admin</div>
+			<div><h2 style="display:inline;">Souple Airlines</h2></div>
+			<div><h3 style="display:inline;">Admin</h3></div>
 		</div>
-		<div style="float: right; display: block;">
-			<div><%=userBean.getName() %></div>
+		<div class="floatRight">
+			<div class="floatRight">
+				<h3 style="display:inline;"><%=userBean.getName() %></h3>
+				
+				<form action="accountservlet" id="logoutForm" name="logoutForm" method="post">
+					<input type="hidden" name="action" value="logout" />
+					<input type="button" class="imageButton logout floatRight w40 h40" onclick="submitForm('logoutForm');" />
+				</form>
+			</div>
 		</div>
 		<hr style="clear: both;"/>
 	</header>
