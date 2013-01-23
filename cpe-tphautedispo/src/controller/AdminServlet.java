@@ -4,7 +4,11 @@ import java.io.IOException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.*;
+
+import modules.datastore.DatastoreUserToolbox;
 import objects.User;
+import com.google.appengine.api.datastore.Key;
+import com.google.appengine.api.datastore.KeyFactory;
 
 public class AdminServlet extends HttpServlet {
 
@@ -13,6 +17,7 @@ public class AdminServlet extends HttpServlet {
 	{
 		manageFlights,
 		manageUsers,
+		deleteUser,
 		view
 	}
 	
@@ -64,6 +69,14 @@ public class AdminServlet extends HttpServlet {
 				break;
 			case manageUsers:
 				router.setUrl("adminManageUsers.jsp");
+				break;
+			case deleteUser:
+				if(req.getParameter("userKey") != null)
+				{
+					DatastoreUserToolbox dsut = new DatastoreUserToolbox();
+					dsut.removeEntityFromDatastore(KeyFactory.createKey("User", req.getParameter("userKey")));
+				}
+				
 				break;
 			default:
 				router.setUrl("adminDefaultView.jsp");
