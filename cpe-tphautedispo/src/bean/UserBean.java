@@ -68,8 +68,8 @@ public class UserBean implements Serializable {
 		return getUser().getName();
 	}
 	
-	public String getCreationDateFormatted() {
-		return getUser().getCreationDateFormatted();
+	public String getCreationDateFormated() {
+		return getUser().getCreationDateFormated();
 	}
 	
 	public ArrayList<User> getUsers() {
