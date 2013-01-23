@@ -25,7 +25,7 @@ public class DatastoreUserToolbox extends DatastoreToolbox{
 		return null;
 	}
 	
-	public boolean checkCredentials(String login, String password)
+	public Boolean checkCredentials(String login, String password)
 	{
 		boolean valid = false;
 		
@@ -34,6 +34,32 @@ public class DatastoreUserToolbox extends DatastoreToolbox{
 			valid = true;
 		}		
 		return valid;
+	}
+	
+	public String userExists(String email, String login)
+	{
+		String exists = "";
+				
+		Query qemail = new Query("User");
+		qemail.setFilter(new Query.FilterPredicate("email", Query.FilterOperator.EQUAL,email));
+		PreparedQuery pqemail = datastore.prepare(qemail);
+		
+		if (pqemail.countEntities(null) > 0)
+		{
+			exists += "emailExists";
+		}
+		
+		Query qlogin = new Query("User");
+		qlogin.setFilter(new Query.FilterPredicate("login", Query.FilterOperator.EQUAL,login));
+		
+		PreparedQuery pqlogin = datastore.prepare(qlogin);
+		
+		if (pqlogin.countEntities(null) > 0)
+		{
+			exists += "loginExists";
+		}
+		
+		return exists;
 	}
 	
 	public void putUserToDatastore(User user)

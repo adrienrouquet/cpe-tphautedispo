@@ -4,18 +4,14 @@ import java.io.IOException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-//import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import objects.User;
-//import AppCore.Websocket;
 import manager.UserManager;
 
-
-//@WebServlet("/ChatServlet")
 public class FlightsServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -40,17 +36,35 @@ public class FlightsServlet extends HttpServlet {
 		if (!userBean.getUser().isConnected())
 			userBean.getUser().connect();
 		
-		//On recupere le chatRouterBean de la session    	
-    	bean.Router router 		= (bean.Router) session.getAttribute("routerBean");
+		//On recupere le searchBean de la session    
+    	bean.UserBean searchBean	= (bean.UserBean) session.getAttribute("searchBean");		
+		if(searchBean == null || searchBean.getUser().getKey() == null)
+		{
+			System.out.println("Warning: searchBean is null in ChatServlet");
+			searchBean = new
+		}
+		
+		//On recupere le flightsRouterBean de la session    	
+    	bean.Router router 		= (bean.Router) session.getAttribute("flightsRouterBean");
     	if(router == null)
     	{
-    		System.out.println("Warning: routerBean is null in FlightsServlet");
+    		System.out.println("Warning: flightsRouterBean is null in FlightsServlet");
     		router = new bean.Router();
-    		session.setAttribute("chatRouterBean", router);
+    		session.setAttribute("flightsRouterBean", router);
     	}
     	router.setAction(req.getParameter("action"));
     	
-    	
+    	Action actionenum = Action.login;
+		String actionstring = req.getParameter("action");
+		
+		for(Action a : Action.values())
+		{
+			if (a.toString().equalsIgnoreCase(actionstring))
+			{
+				actionenum = a;
+				break;
+			}
+		}
 		switch(router.getAction())
 		{
 	      	default:
@@ -77,5 +91,8 @@ public class FlightsServlet extends HttpServlet {
 		routing(req, res);
 	}
 	
-	
+	private enum Action
+	{
+		defaultView
+	}
 }

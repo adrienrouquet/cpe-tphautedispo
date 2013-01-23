@@ -30,6 +30,11 @@ public abstract class UserManager {
 		_dsut.putUserToDatastore(user);
 	}
 	
+	public static String userExists(String email, String login)
+	{
+		return _dsut.userExists(email, login);
+	}
+	
 //	public static ArrayList<User> getUsers()
 //	{
 //		return _dsut.getEntityFromCredentials();

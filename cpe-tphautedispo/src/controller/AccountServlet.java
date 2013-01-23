@@ -5,7 +5,6 @@ import java.sql.SQLException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-//import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -132,19 +131,17 @@ public class AccountServlet extends HttpServlet {
 					String login 		= req.getParameter("login").trim().toLowerCase();
 					String password 	= req.getParameter("password").trim();
 					
-					//TODO
-					//String errors 		= UserManager.userExists(email,login);
+					String errors 		= UserManager.userExists(email,login);
 					
-					//TODO
-//					if(errors.equals(""))
-//					{
+					if(errors.equals(""))
+					{
 						UserManager.addUser(firstName, lastName, yearOfBirth, email, login, password);
 						router.setUrl("accountLogin.jsp?valid=subscribe");
-//					}
-//					else
-//					{
-//						ar.setUrl("accountSubscribe.jsp?error="+errors);						
-//					}
+					}
+					else
+					{
+						router.setUrl("accountSubscribe.jsp?error="+errors);						
+					}
 					rd = req.getRequestDispatcher("/content/account/account.jsp");
 					rd.forward(req, res);
 				}break;
