@@ -6,6 +6,7 @@ import java.util.Date;
 
 import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.Key;
+import com.google.appengine.api.datastore.KeyFactory;
 
 public class User implements Serializable{
 	
@@ -138,7 +139,7 @@ public class User implements Serializable{
 	}
 	
 	public String getKeyAsString() {
-		return _key.toString();
+		return KeyFactory.keyToString(_key);
 	}
 	public Key getKey() {
 		return _key;
