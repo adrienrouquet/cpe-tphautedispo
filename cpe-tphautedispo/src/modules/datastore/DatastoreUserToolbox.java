@@ -3,6 +3,8 @@ package modules.datastore;
 import objects.User;
 
 import com.google.appengine.api.datastore.Entity;
+import com.google.appengine.api.datastore.EntityNotFoundException;
+import com.google.appengine.api.datastore.Key;
 import com.google.appengine.api.datastore.PreparedQuery;
 import com.google.appengine.api.datastore.Query;
 
@@ -24,7 +26,10 @@ public class DatastoreUserToolbox extends DatastoreToolbox{
 		}
 		return null;
 	}
-	
+	public User getUserFromKey(Key key)
+	{
+		return new User(getEntityFromKey(key));
+	}
 	public Boolean checkCredentials(String login, String password)
 	{
 		boolean valid = false;

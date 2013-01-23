@@ -35,12 +35,12 @@
 		<%
 			}
 		%>
-		<form method="post" id="accountLoginForm" action="AccountServlet">
+		<form method="post" id="accountLoginForm" action="accountservlet">
 			<input type="hidden" name="action" value="login"/>
 			<input placeholder="Enter Login..." type="text" id="login" name="login"/>
 			<input placeholder="Enter Password..." type="password" id="password" name="password"/>
 			<input type="submit" class="button" value="Login" />
-			<br /><a href="AccountServlet?action=subscribe"> Sign up </a>
+			<br /><a href="accountservlet?action=subscribe"> Sign up </a>
 			<br /><br /><br />
 		</form>
 	</section>

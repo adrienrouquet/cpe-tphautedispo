@@ -21,9 +21,11 @@ public class DefaultConf  extends HttpServlet {
 	{
 		System.out.println("DefaultConf: Entering doGet");
 		DatastoreUserToolbox dsut = new DatastoreUserToolbox();
-		dsut.putUserToDatastore(new User("admin", "istrator", 2000, "admin@souple-airlines.com", "admin", "password"));
+		User admin = new User("admin", "istrator", 2000, "admin@souple-airlines.com", "admin", "password");
+		admin.setRightTypeId(1);
+		dsut.putUserToDatastore(admin);
 		EmailUserToolbox eut = new EmailUserToolbox();
-		eut.sendSubscriptionConfirmation(user);
+		eut.sendSubscriptionConfirmation(new User("admin", "istrator", 2000, "ortola.loic@gmail.com", "admin", "password"));
 	}
 
 }

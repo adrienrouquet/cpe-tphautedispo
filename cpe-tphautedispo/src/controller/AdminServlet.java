@@ -1,7 +1,6 @@
 package controller;
 
 import java.io.IOException;
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.*;
@@ -34,7 +33,7 @@ public class AdminServlet extends HttpServlet {
 		}
 		
 		bean.Router router = (bean.Router) session.getAttribute("adminRouterBean");
-		
+		//
 		switch (router.getAction()) {
 		case "manageFlight":
 			router.setUrl("manageFlight.jsp");
@@ -43,6 +42,7 @@ public class AdminServlet extends HttpServlet {
 			router.setUrl("manageUser.jsp");
 			break;
 		default:
+			router.setUrl("index.jsp");
 			break;
 		}
 		
