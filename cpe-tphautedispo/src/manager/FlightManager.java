@@ -8,6 +8,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 
+import com.google.appengine.api.datastore.Key;
+
 import objects.Flight;
 
 public abstract class FlightManager implements Serializable{
@@ -28,4 +30,8 @@ public abstract class FlightManager implements Serializable{
 		return new SimpleDateFormat("MM/dd/yyyy 'at' HH:mm").format(date);
 	}
 	
+	public static void deleteFlight(Key key)
+	{
+		_dftb.removeEntityFromDatastore(key);
+	}
 }
