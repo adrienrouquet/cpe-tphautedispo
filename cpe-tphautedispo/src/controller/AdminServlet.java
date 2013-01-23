@@ -4,12 +4,21 @@ import java.io.IOException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.*;
+
+import manager.UserManager;
 import objects.User;
 
 public class AdminServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
-
+	private enum Action
+	{
+		manageFlights,
+		manageUsers,
+		view
+	}
+	
+	
 	public void doGet(HttpServletRequest req, HttpServletResponse res)throws IOException
 	{
 		test(req,res);
@@ -33,18 +42,32 @@ public class AdminServlet extends HttpServlet {
 		}
 		
 		bean.Router router = (bean.Router) session.getAttribute("adminRouterBean");
-		//
-		switch (router.getAction()) {
-		case "manageFlight":
-			router.setUrl("manageFlight.jsp");
-			break;
-		case "manageUser":
-			router.setUrl("manageUser.jsp");
-			break;
-		default:
-			router.setUrl("index.jsp");
-			break;
+		
+		Action actionenum = Action.view;
+		
+		String actionstring = req.getParameter("action");
+		
+		for(Action a : Action.values())
+		{
+			if (a.toString().equalsIgnoreCase(actionstring))
+			{
+				actionenum = a;
+				break;
+			}
 		}
+		
+		switch(actionenum)
+		{
+			case manageFlights:
+				router.setUrl("manageFlight.jsp");
+				break;
+			case manageUsers:
+				router.setUrl("manageUser.jsp");
+				break;
+			default:
+				router.setUrl("adminDefaultView.jsp");
+				break;
+		}		
 		
 		try {
 			RequestDispatcher rd = req.getRequestDispatcher("content/admin/admin.jsp");
