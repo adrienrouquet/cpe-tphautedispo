@@ -60,10 +60,13 @@ public class AdminServlet extends HttpServlet {
 		switch(actionenum)
 		{
 			case manageFlights:
-				router.setUrl("manageFlights.jsp");
+				router.setUrl("adminManageFlights.jsp");
 				break;
 			case manageUsers:
-				router.setUrl("manageUsers.jsp");
+				router.setUrl("adminManageUsers.jsp");
+				break;
+			case view:
+				router.setUrl("adminDefaultView.jsp");
 				break;
 			default:
 				router.setUrl("adminDefaultView.jsp");
