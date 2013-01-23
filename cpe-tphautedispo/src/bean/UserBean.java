@@ -1,6 +1,9 @@
 package bean;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+
+import modules.datastore.DatastoreUserToolbox;
 
 import com.google.appengine.api.datastore.Key;
 import objects.User;
@@ -63,6 +66,15 @@ public class UserBean implements Serializable {
 
 	public String getName() {
 		return getUser().getName();
+	}
+	
+	public String getCreationDateFormatted() {
+		return getUser().getCreationDateFormatted();
+	}
+	
+	public ArrayList<User> getUsers() {
+		DatastoreUserToolbox dsut = new DatastoreUserToolbox();
+		return dsut.getUsers();
 	}
 	
 	public void connect() {

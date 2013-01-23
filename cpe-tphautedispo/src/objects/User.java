@@ -1,6 +1,8 @@
 package objects;
 
 import java.io.Serializable;
+import java.text.DateFormat;
+import java.util.Date;
 
 import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.Key;
@@ -15,6 +17,7 @@ public class User implements Serializable{
 	private String _email 					= "";
 	private String _login 					= "";
 	private String _password 			= "";
+	private Date _creationDate			= null;
 	private Integer _rightTypeId		= 0;
 	private Boolean _isConnected 	= false;
 	
@@ -31,6 +34,7 @@ public class User implements Serializable{
 		_email 				= (String) entity.getProperty("email");
 		_login				= (String) entity.getProperty("login");
 		_password 		= (String) entity.getProperty("password");
+		_creationDate	= (Date) entity.getProperty("creationDate");
 		_rightTypeId		= Integer.parseInt(entity.getProperty("rightTypeId").toString());
 		_key					= entity.getKey();
 		_isConnected	= false;
@@ -112,6 +116,19 @@ public class User implements Serializable{
 	public void setPassword(String password) {
 		this._password = password;
 	}
+	
+	public String getCreationDateFormatted() {
+		return DateFormat.getDateInstance().format(_creationDate);
+	}
+	
+	public Date getCreationDate() {
+		return _creationDate;
+	}
+	
+	public void setCreationDate(Date creationDate) {
+		this._creationDate = creationDate;
+	}
+	
 	
 	public Integer getRightTypeId() {
 		return _rightTypeId;
