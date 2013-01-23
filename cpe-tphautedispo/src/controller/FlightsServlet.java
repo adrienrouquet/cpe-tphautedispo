@@ -76,11 +76,25 @@ public class FlightsServlet extends HttpServlet {
 		{
 		case findFlight:
 		{
+			// Le searchUserBean est sense etre null avant la recherche
+			if (searchFlightBean == null)
+			{
+				searchFlightBean		=  new bean.FlightBean();				
+			}
+			String searchFrom 		= req.getParameter("searchFrom").trim();
+			String searchTo 		= req.getParameter("searchTo").trim();
 			
+			searchFlightBean.setDepartureAirport(searchFrom);
+			searchFlightBean.setArrivalAirport(searchTo);
+			
+			session.setAttribute("searchFlightBean", searchFlightBean);
+			
+			router.setUrl("searchFlights.jsp");	
 		}break;
 		
 		case defaultView:
 		{
+			searchFlightBean = new bean.FlightBean();
 			router.setAction("defaultView");
 			router.setUrl("searchFlights.jsp");
 
@@ -88,6 +102,7 @@ public class FlightsServlet extends HttpServlet {
 			
       	default:
     	{
+    		searchFlightBean = new bean.FlightBean();
     		router.setAction("defaultView");
 			router.setUrl("searchFlights.jsp");
 			

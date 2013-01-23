@@ -37,6 +37,11 @@ public abstract class FlightManager implements Serializable{
 		return new SimpleDateFormat("MM/dd/yyyy 'at' HH:mm").format(date);
 	}
 	
+	public static ArrayList<Flight> getFlights(String departureAirport, String arrivalAirport)
+	{
+		return _dftb.getFlights(departureAirport, arrivalAirport);
+	}
+	
 	public static void deleteFlight(Key key)
 	{
 		_dftb.removeEntityFromDatastore(key);
