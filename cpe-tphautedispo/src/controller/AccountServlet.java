@@ -60,7 +60,7 @@ public class AccountServlet extends HttpServlet {
 		
 		if(req.getParameter("action") != null)
 		{
-			Action actionenum = Action.login;
+			Action actionenum = Action.view;
 			String actionstring = req.getParameter("action");
 			
 			for(Action a : Action.values())
@@ -112,6 +112,17 @@ public class AccountServlet extends HttpServlet {
 						rd.forward(req, res);
 					}
 				}break;
+				case redirect:
+				{
+					if(userBean.getUser().isAdmin())
+					{
+						res.sendRedirect("adminservlet");
+					}
+					else
+					{
+						res.sendRedirect("flightsservlet");
+					}
+				}break;
 				case logout:
 				{
 					System.out.println("AccountServlet: Logout action received");
@@ -126,6 +137,29 @@ public class AccountServlet extends HttpServlet {
 					router.setUrl("accountSubscribe.jsp");
 					rd = req.getRequestDispatcher("/content/account/account.jsp");
 					rd.forward(req, res);
+				}break;
+				case changeSettings:
+				{
+					router.setUrl("accountSettings.jsp");
+					rd = req.getRequestDispatcher("/content/account/account.jsp");
+					rd.forward(req, res);
+				}break;
+				case submitChangeSettings:
+				{
+					if(UserManager.checkCredentials(userBean.getLogin(),req.getParameter("oldPassword")))
+					{
+						System.out.println("Old password valid, changing passwords");
+						userBean.getUser().changePassword(req.getParameter("newPassword"));
+						res.sendRedirect("accountservlet");					
+						router.setUrl("accountLogin.jsp?valid=changePassword");
+					}
+					else
+					{
+						router.setUrl("accountSettings.jsp?error=wrongOldPassword");
+						rd = req.getRequestDispatcher("/content/account/account.jsp");
+						rd.forward(req, res);
+					}
+				
 				}break;
 				case submitSubscribe:
 				{
@@ -172,6 +206,10 @@ public class AccountServlet extends HttpServlet {
 		login,
 		logout,
 		subscribe,
-		submitSubscribe
+		submitSubscribe,
+		changeSettings,
+		submitChangeSettings,
+		redirect,
+		view
 	}
 }

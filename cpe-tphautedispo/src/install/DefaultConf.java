@@ -24,6 +24,7 @@ public class DefaultConf  extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException
 	{
 		System.out.println("DefaultConf: Entering doGet");
+		
 		DatastoreUserToolbox dsut = new DatastoreUserToolbox();
 		User admin = new User("admin", "istrator", 2000, "admin@souple-airlines.com", "admin", "password");
 		admin.setRightTypeId(1);

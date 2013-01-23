@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.text.DateFormat;
 import java.util.Date;
 
+import modules.datastore.DatastoreUserToolbox;
+
 import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.Key;
 import com.google.appengine.api.datastore.KeyFactory;
@@ -169,6 +171,14 @@ public class User implements Serializable{
 		if(_rightTypeId == 1)
 			return true;
 		return false;
+	}
+	
+	public void changePassword(String newPassword)
+	{
+		DatastoreUserToolbox dsut = new DatastoreUserToolbox();
+		Entity userEntity = dsut.getEntityFromKey(_key);
+		userEntity.setProperty("password", newPassword);
+		dsut.putEntityToDatastore(userEntity);
 	}
 	
 }

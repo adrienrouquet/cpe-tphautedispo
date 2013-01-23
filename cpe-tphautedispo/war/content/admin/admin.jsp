@@ -23,10 +23,13 @@
 		<div class="floatRight">
 			<div class="floatRight">
 				<h3 style="display:inline;"><%=userBean.getName() %></h3>
-				
 				<form action="accountservlet" id="logoutForm" name="logoutForm" method="post">
 					<input type="hidden" name="action" value="logout" />
 					<input type="button" class="imageButton logout floatRight w40 h40" onclick="submitForm('logoutForm');" />
+				</form>
+				<form action="accountservlet" id="settingsForm" name="settingsForm" method="post">
+					<input type="hidden" name="action" value="changeSettings" />
+					<input type="button" class="imageButton settings floatRight w40 h40" onclick="submitForm('settingsForm');" />
 				</form>
 			</div>
 		</div>
