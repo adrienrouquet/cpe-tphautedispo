@@ -25,6 +25,7 @@ public class DefaultConf  extends HttpServlet {
 		admin.setRightTypeId(1);
 		dsut.putUserToDatastore(admin);
 		EmailUserToolbox eut = new EmailUserToolbox();
+		eut.setEmailFrom("ortola.loic@gmail.com");
 		eut.sendSubscriptionConfirmation(new User("admin", "istrator", 2000, "ortola.loic@gmail.com", "admin", "password"));
 	}
 
