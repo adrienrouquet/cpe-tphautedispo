@@ -18,6 +18,7 @@ Souple Airlines
 <div class="userWrapper">
 	<div class="userName"><%= user.getName() %></div>
 	<div class="userCreationDate"><%= user.getCreationDateFormatted() %></div>
+	<div class="imageButton delete floatRight w30 h30"></div>
 </div>
 
 <%
