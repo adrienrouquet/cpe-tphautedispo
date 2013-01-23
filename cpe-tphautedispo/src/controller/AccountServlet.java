@@ -58,6 +58,8 @@ public class AccountServlet extends HttpServlet {
 			session.setAttribute("userBean", userBean);
 		}
 		
+		System.out.println(userBean.getUser().getRightTypeId());
+		
 		if(req.getParameter("action") != null)
 		{
 			Action actionenum = Action.view;
@@ -150,8 +152,7 @@ public class AccountServlet extends HttpServlet {
 					{
 						System.out.println("Old password valid, changing passwords");
 						userBean.getUser().changePassword(req.getParameter("newPassword"));
-						res.sendRedirect("accountservlet");					
-						router.setUrl("accountLogin.jsp?valid=changePassword");
+						res.sendRedirect("accountservlet?action=logout&valid=changePassword");
 					}
 					else
 					{
@@ -159,7 +160,6 @@ public class AccountServlet extends HttpServlet {
 						rd = req.getRequestDispatcher("/content/account/account.jsp");
 						rd.forward(req, res);
 					}
-				
 				}break;
 				case submitSubscribe:
 				{

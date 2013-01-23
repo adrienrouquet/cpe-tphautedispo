@@ -34,7 +34,7 @@
 		<div class="valid" style="display: inline-block;">Account created Successfully</div>		
 		<%
 			}
-			if(request.getParameter("valid") != null && request.getParameter("valid").contains("subscribe"))
+			if(request.getParameter("valid") != null && request.getParameter("valid").contains("changePassword"))
 			{
 		%>
 		<div class="valid" style="display: inline-block;">Password has been changed Successfully</div>
