@@ -8,12 +8,12 @@
 <input type="hidden" name="action" value="manageUsers" />
 <input type="hidden" name="userKey" value="" />
 <%
-	ArrayList<User> users = UserManager.getUsers();
-	
+	ArrayList users = UserManager.getUsers();
 	if(users.size() > 0)
 	{
-		for(User user : users)
+		for(Object obj : users)
 		{
+			User user = (User) obj;
 			String onClickDeleteContent = "setValue('mainForm','action','deleteUser');setValue('mainForm','userKey','" + user.getKeyAsString() + "');submitForm('mainForm');";
 %>
 <div class="userWrapperNoHover">

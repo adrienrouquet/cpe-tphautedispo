@@ -1,5 +1,6 @@
 package manager;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import com.google.appengine.api.datastore.Key;
 
@@ -9,8 +10,12 @@ import modules.datastore.*;
 /**
  * AppCore UserManager
  */
-public abstract class UserManager {
+public abstract class UserManager implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private static DatastoreUserToolbox _dsut = new DatastoreUserToolbox();
 
 	public UserManager(){};
