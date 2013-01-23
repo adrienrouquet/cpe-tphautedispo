@@ -2,10 +2,7 @@
 <%@page import="objects.User" %>
 <jsp:useBean id="routerBean" class="bean.Router" scope="session" />
 <jsp:useBean id="userBean" class="bean.UserBean" scope="session" />
-
-Souple Airlines
-<br />
-<br />
+<section>
 <form name="mainForm" id="mainForm" action="adminservlet" method="post">
 <input type="hidden" name="action" value="manageUsers" />
 <input type="hidden" name="userKey" value="" />
@@ -21,7 +18,7 @@ Souple Airlines
 <div class="userWrapper">
 	<div class="userName"><%= user.getName() %></div>
 	<div class="userCreationDate"><%= user.getCreationDateFormated() %></div>
-	<input type="button" class="imageButton delete floatRight w30 h30" onclick="<%=onClickDeleteContent%>"/>
+	<input type="button" class="imageButton delete floatRight w40 h40" onclick="<%=onClickDeleteContent%>"/>
 </div>
 
 <%
@@ -34,3 +31,4 @@ Souple Airlines
 	}
 %>
 </form>
+</section>

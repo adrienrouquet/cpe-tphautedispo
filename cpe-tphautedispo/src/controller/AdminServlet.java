@@ -36,7 +36,7 @@ public class AdminServlet extends HttpServlet {
 		bean.UserBean userBean = (bean.UserBean) session.getAttribute("userBean");
 		
 		if (userBean == null || userBean.getUser() == null || !userBean.getUser().isAdmin()) {
-			res.sendRedirect("AccountServlet");
+			res.sendRedirect("accountservlet");
 		}
 		
 		bean.Router router = (bean.Router) session.getAttribute("adminRouterBean");
