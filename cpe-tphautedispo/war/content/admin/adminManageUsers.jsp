@@ -16,7 +16,7 @@
 		{
 			String onClickDeleteContent = "setValue('mainForm','action','deleteUser');setValue('mainForm','userKey','" + user.getKeyAsString() + "');submitForm('mainForm');";
 %>
-<div class="userWrapper">
+<div class="userWrapperNoHover">
 	<div class="userName"><%= user.getName() %></div>
 	<div class="userCreationDate"><%= user.getCreationDateFormated() %></div>
 	<input type="button" class="imageButton delete floatRight w40 h40" onclick="<%=onClickDeleteContent%>"/>

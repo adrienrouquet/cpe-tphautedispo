@@ -1,8 +1,12 @@
 package modules.datastore;
 
+import java.util.ArrayList;
+
 import objects.Flight;
+import objects.User;
 
 import com.google.appengine.api.datastore.Entity;
+import com.google.appengine.api.datastore.FetchOptions;
 import com.google.appengine.api.datastore.Key;
 import com.google.appengine.api.datastore.PreparedQuery;
 import com.google.appengine.api.datastore.Query;
@@ -44,6 +48,20 @@ public class DatastoreFlightToolbox extends DatastoreToolbox{
 		flightEntity.setProperty("availableSeats", flight.getAvailableSeats());
 		flightEntity.setProperty("seatPrice", flight.getSeatPrice());
 		datastore.put(flightEntity);
+	}
+	
+	public ArrayList<Flight> getFlights()
+	{
+		ArrayList<Flight> flights = new ArrayList<Flight>();
+		
+		FetchOptions fetchoptions = FetchOptions.Builder.withLimit(Integer.MAX_VALUE);
+		
+		Query q = new Query("Flight");
+		PreparedQuery pq = datastore.prepare(q);
+		for(Entity rs : pq.asIterable()){
+			flights.add(new Flight(rs));
+		}
+		return flights;		
 	}
 
 }
