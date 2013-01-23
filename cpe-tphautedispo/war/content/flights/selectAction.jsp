@@ -7,7 +7,7 @@
 <%-- <jsp:useBean id="searchUserBean" class="bean.UserBean" scope="session" /> --%>
 <jsp:useBean id="flightRouterBean" class="bean.Router" scope="session" />
 
-<script type="text/javascript" src="script/websocketContact.js"></script>
+<!-- <script type="text/javascript" src="script/websocketContact.js"></script> -->
 <div id="container">
 	<header class="black" style="text-align:center;">
 		<form method="post" id="backForm" name="backForm" action="FlightsServlet">
