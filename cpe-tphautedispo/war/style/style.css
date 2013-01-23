@@ -27,44 +27,6 @@ body{
 	color: white;
 }
 
-#bigLogoLabel{
-	background-image: url("../img/logolabel.png");
-	background-size: 100% 100%;
-	background-position: center center;
-	text-align: center;
-	display: inline-block;
-	position: relative;
-	top: 50px;
-	height:100px;
-	width:200px;
-	z-index: -2;
-}
-#bigLogo{
-	background-image: url("../img/logo.png");
-	background-size: 100% 100%;
-	background-position: center center;
-	text-align: center;
-	display: inline-block;
-	position: relative;
-	top: 20px;
-	height:100px;
-	width:100px;
-	z-index: -2;
-}
-#logoBGContainer{
-	background-image: url("../img/logo.png");
-	background-size: 100% 100%;
-	background-position: center center;
-	position: absolute;
-	top: 2px;
-	right: 0;
-	text-align: center;
-	display: block;
-	height:20px;
-	width:20px;
-	z-index: -2;
-}
-
 #container{
 	position: absolute;
 	top: 0px;
