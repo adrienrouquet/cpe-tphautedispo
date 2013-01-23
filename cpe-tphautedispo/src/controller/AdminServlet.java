@@ -8,6 +8,7 @@ import javax.servlet.http.*;
 import manager.FlightManager;
 import manager.UserManager;
 
+import objects.Flight;
 import objects.User;
 import com.google.appengine.api.datastore.Key;
 import com.google.appengine.api.datastore.KeyFactory;
@@ -21,6 +22,7 @@ public class AdminServlet extends HttpServlet {
 		manageUsers,
 		deleteUser,
 		deleteFlight,
+		addFlight,
 		view
 	}
 	
@@ -84,6 +86,21 @@ public class AdminServlet extends HttpServlet {
 				{
 					FlightManager.deleteFlight(KeyFactory.stringToKey(req.getParameter("flightKey")));
 				}
+				break;
+			case addFlight:
+				System.out.println("Entering Add Flight");
+				String departureAirport = req.getParameter("flightDepartureAirport");
+				String departureTime = req.getParameter("flightDepartureTime");
+				String arrivalAirport = req.getParameter("flightArrivalAirport");
+				String arrivalTime = req.getParameter("flightArrivalTime");
+				String seatsAvailable = req.getParameter("flightAvailableSeats");
+				String seatPrice = req.getParameter("flightSeatPrice");
+				
+				if (departureAirport!=null && departureTime!=null && arrivalAirport!=null && arrivalTime!=null && seatsAvailable!=null && seatPrice!=null) {
+					Flight fl = new Flight(departureAirport, departureTime, arrivalAirport, arrivalTime, seatsAvailable, seatPrice);
+					FlightManager.addFlight(fl);
+				}
+				router.setUrl("adminDefaultView.jsp");
 				break;
 			case view:
 				router.setUrl("adminDefaultView.jsp");

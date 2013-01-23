@@ -11,6 +11,7 @@ import java.util.Date;
 import com.google.appengine.api.datastore.Key;
 
 import objects.Flight;
+import objects.User;
 
 public abstract class FlightManager implements Serializable{
 	
@@ -45,5 +46,10 @@ public abstract class FlightManager implements Serializable{
 	public static void deleteFlight(Key key)
 	{
 		_dftb.removeEntityFromDatastore(key);
+	}
+	
+	public static void addFlight(Flight flight)
+	{
+		_dftb.putFlightToDatastore(flight);
 	}
 }
