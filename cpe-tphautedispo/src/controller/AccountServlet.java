@@ -60,9 +60,21 @@ public class AccountServlet extends HttpServlet {
 		
 		if(req.getParameter("action") != null)
 		{
-			switch(req.getParameter("action"))
+			Action actionenum = Action.login;
+			String actionstring = req.getParameter("action");
+			
+			for(Action a : Action.values())
 			{
-				case "login":
+				if (a.toString().equalsIgnoreCase(actionstring))
+				{
+					actionenum = a;
+					break;
+				}
+			}
+			
+			switch(actionenum)
+			{
+				case login:
 				{
 					System.out.println("AccountServlet: Checking User credentials");
 						
@@ -104,13 +116,13 @@ public class AccountServlet extends HttpServlet {
 //					req.getSession(true);
 //					res.sendRedirect("AccountServlet");
 //				}break;
-				case "subscribe":
+				case subscribe:
 				{
 					router.setUrl("accountSubscribe.jsp");
 					rd = req.getRequestDispatcher("/content/account/account.jsp");
 					rd.forward(req, res);
 				}break;
-				case "submitSubscribe":
+				case submitSubscribe:
 				{
 					String firstName	= req.getParameter("firstName").trim().toLowerCase();
 					String lastName		= req.getParameter("lastName").trim().toLowerCase();
@@ -150,5 +162,12 @@ public class AccountServlet extends HttpServlet {
 			rd = req.getRequestDispatcher("content/account/account.jsp");
 			rd.forward(req, res);
 		}
+	}
+	
+	private enum Action
+	{
+		login,
+		subscribe,
+		submitSubscribe
 	}
 }
