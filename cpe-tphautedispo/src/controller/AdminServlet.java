@@ -5,6 +5,7 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.*;
 
+import manager.FlightManager;
 import manager.UserManager;
 
 import objects.User;
@@ -19,6 +20,7 @@ public class AdminServlet extends HttpServlet {
 		manageFlights,
 		manageUsers,
 		deleteUser,
+		deleteFlight,
 		view
 	}
 	
@@ -74,6 +76,13 @@ public class AdminServlet extends HttpServlet {
 				if(req.getParameter("userKey") != null)
 				{
 					UserManager.deleteUser(KeyFactory.stringToKey(req.getParameter("userKey")));
+				}
+				break;
+			case deleteFlight:
+				System.out.println("Entering Delete Flight");
+				if(req.getParameter("flightKey") != null)
+				{
+					FlightManager.deleteFlight(KeyFactory.stringToKey(req.getParameter("flightKey")));
 				}
 				break;
 			case view:
