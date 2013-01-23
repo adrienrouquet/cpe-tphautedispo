@@ -1,3 +1,4 @@
+<%@page import="manager.FlightManager"%>
 <%@page import="java.util.ArrayList" %>
 <%@page import="objects.Flight" %>
 <jsp:useBean id="routerBean" class="bean.Router" scope="session" />
@@ -7,13 +8,13 @@
 <input type="hidden" name="action" value="manageUsers" />
 <input type="hidden" name="userKey" value="" />
 <%
-	ArrayList<Flight> flights = userBean.getUsers();
+	ArrayList<Flight> flights = FlightManager.getFlights();
 	
 	if(flights.size() > 0)
 	{
 		for(Flight flight : flights)
 		{
-			String onClickDeleteContent = "setValue('mainForm','action','deleteUser');setValue('mainForm','userKey','" + user.getKeyAsString() + "');submitForm('mainForm');";
+			String onClickDeleteContent = "setValue('mainForm','action','deleteFlight');setValue('mainForm','userKey','" + flight.getKeyAsString() + "');submitForm('mainForm');";
 %>
 <div class="userWrapper">
 	<div class="userName"><%= flight.getFlightNumber() %></div>
@@ -25,14 +26,13 @@
 	<div class="userCreationDate"><%= flight.getSeatPrice() %></div>
 	<input type="button" class="imageButton delete floatRight w40 h40" onclick="<%=onClickDeleteContent%>"/>
 </div>
-
 <%
 
 		}
 	}
 	else
 	{
-		out.print("No user to display");
+		out.print("No flight to display");
 	}
 %>
 </form>
