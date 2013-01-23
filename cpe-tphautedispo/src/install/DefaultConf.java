@@ -24,6 +24,7 @@ public class DefaultConf  extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException
 	{
 		System.out.println("DefaultConf: Entering doGet");
+		
 		DatastoreUserToolbox dsut = new DatastoreUserToolbox();
 		DatastoreFlightToolbox dsft = new DatastoreFlightToolbox();
 		
