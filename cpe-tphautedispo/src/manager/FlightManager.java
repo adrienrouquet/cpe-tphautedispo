@@ -14,9 +14,6 @@ import objects.Flight;
 
 public abstract class FlightManager implements Serializable{
 	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	
 	private static DatastoreFlightToolbox _dftb = new DatastoreFlightToolbox();
