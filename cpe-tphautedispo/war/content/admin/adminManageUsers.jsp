@@ -18,7 +18,7 @@
 <div class="userWrapper">
 	<div class="userName"><%= user.getName() %></div>
 	<div class="userCreationDate"><%= user.getCreationDateFormated() %></div>
-	<input type="button" class="imageButton delete floatRight w30 h30" onclick="<%=onClickDeleteContent%>"/>
+	<input type="button" class="imageButton delete floatRight w40 h40" onclick="<%=onClickDeleteContent%>"/>
 </div>
 
 <%
