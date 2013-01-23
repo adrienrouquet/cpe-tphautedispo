@@ -90,7 +90,7 @@ public class AccountServlet extends HttpServlet {
 						System.out.println("AccountServlet: Wrong credentials");
 						//Par defaut, on forward sur accountLogin.jsp
 						router.setUrl("accountLogin.jsp");
-						rd = req.getRequestDispatcher("content/account/account.jsp");
+						rd = req.getRequestDispatcher("/content/account/account.jsp");
 						rd.forward(req, res);
 					}	
 				}break;
@@ -107,7 +107,7 @@ public class AccountServlet extends HttpServlet {
 				case "subscribe":
 				{
 					router.setUrl("accountSubscribe.jsp");
-					rd = req.getRequestDispatcher("content/account/account.jsp");
+					rd = req.getRequestDispatcher("/content/account/account.jsp");
 					rd.forward(req, res);
 				}break;
 				case "submitSubscribe":
@@ -133,7 +133,7 @@ public class AccountServlet extends HttpServlet {
 //					{
 //						ar.setUrl("accountSubscribe.jsp?error="+errors);						
 //					}
-					rd = req.getRequestDispatcher("content/account/account.jsp");
+					rd = req.getRequestDispatcher("/content/account/account.jsp");
 					rd.forward(req, res);
 				}break;
 				
